@@ -1,4 +1,9 @@
-﻿namespace Maui_Developer_Sample;
+﻿using Microsoft.Maui.Accessibility;
+using Microsoft.Maui.Controls;
+
+using System;
+
+namespace Maui_Developer_Sample;
 
 public partial class MainPage : ContentPage
 {

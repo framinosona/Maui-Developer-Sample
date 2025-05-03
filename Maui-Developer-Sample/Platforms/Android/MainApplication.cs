@@ -1,6 +1,11 @@
 ﻿using Android.App;
 using Android.Runtime;
 
+using Microsoft.Maui;
+using Microsoft.Maui.Hosting;
+
+using System;
+
 namespace Maui_Developer_Sample;
 
 [Application]

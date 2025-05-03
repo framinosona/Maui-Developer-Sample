@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui_Developer_Sample.Pages.HF.HFP_Page1">
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Spacing="20"
+                                 Padding="20"
+                                 VerticalOptions="Center">
+                <Label Text="Haptic Feedback Demo"
+                       FontSize="24"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,20" />
+
+                <Button Text="Click (Standard)"
+                        Clicked="OnStandardClicked"
+                        HorizontalOptions="Fill" />
+
+                <Button Text="Long Press (Medium)"
+                        Clicked="OnMediumClicked"
+                        HorizontalOptions="Fill" />
+
+                <Border IsVisible="{OnPlatform iOS=true, Default=false}"
+                        BackgroundColor="LightYellow"
+                        Stroke="Orange"
+                        StrokeThickness="1"
+                        Padding="10"
+                        Margin="0,15,0,0"
+                        StrokeShape="RoundRectangle 8">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="⚠️ iOS Reminder"
+                               FontAttributes="Bold"
+                               TextColor="DarkSlateGray" />
+                        <Label Text="Please ensure System Haptics are enabled in your iOS settings:"
+                               TextColor="DarkSlateGray" />
+                        <Label Text="Settings → Sounds &amp; Haptics → System Haptics"
+                               FontAttributes="Italic"
+                               TextColor="DarkSlateGray" />
+                        <Button Text="Open Sound Settings"
+                                Clicked="OnOpenSoundSettingsClicked"
+                                Margin="0,10,0,0"
+                                BackgroundColor="#007AFF"
+                                TextColor="White" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

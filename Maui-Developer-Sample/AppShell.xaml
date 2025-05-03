@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Maui_Developer_Sample"
+    xmlns:hf="clr-namespace:Maui_Developer_Sample.Pages.HF"
     Shell.FlyoutBehavior="Flyout"
     Title="Maui_Developer_Sample">
 
@@ -12,4 +13,8 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <ShellContent
+        Title="Haptic Feedback"
+        ContentTemplate="{DataTemplate hf:HFP_Page1}"
+        Route="HapticFeedbackPage" />
 </Shell>

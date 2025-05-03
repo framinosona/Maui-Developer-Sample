@@ -1,4 +1,7 @@
-﻿namespace Maui_Developer_Sample;
+﻿using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+
+namespace Maui_Developer_Sample;
 
 public partial class App : Application
 {
