@@ -2,13 +2,14 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Maui_Developer_Sample.Pages.HF.HFP_Page1">
+             x:Class="Maui_Developer_Sample.Pages.HF.HFP_Page1"
+             Title="Haptic Feedback Demo 1">
     <ContentPage.Content>
         <ScrollView>
             <VerticalStackLayout Spacing="20"
                                  Padding="20"
                                  VerticalOptions="Center">
-                <Label Text="Haptic Feedback Demo"
+                <Label Text="Haptic Feedback Demo 1"
                        FontSize="24"
                        HorizontalOptions="Center"
                        Margin="0,0,0,20" />
