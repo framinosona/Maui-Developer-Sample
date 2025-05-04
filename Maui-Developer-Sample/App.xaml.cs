@@ -5,6 +5,8 @@ namespace Maui_Developer_Sample;
 
 public partial class App : Application
 {
+    public static AppShell AppShell { get; private set; }
+    
     public App()
     {
         InitializeComponent();
@@ -12,6 +14,7 @@ public partial class App : Application
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new Window(new AppShell());
+        AppShell = new AppShell();
+        return new Window(AppShell);
     }
 }

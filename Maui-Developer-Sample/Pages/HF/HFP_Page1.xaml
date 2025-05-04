@@ -21,7 +21,7 @@
                         Clicked="OnMediumClicked"
                         HorizontalOptions="Fill" />
 
-                <Border IsVisible="{OnPlatform iOS=true, Default=false}"
+                <Border IsVisible="{OnPlatform iOS=true, Android=true, Default=false}"
                         BackgroundColor="LightYellow"
                         Stroke="Orange"
                         StrokeThickness="1"
@@ -29,16 +29,21 @@
                         Margin="0,15,0,0"
                         StrokeShape="RoundRectangle 8">
                     <VerticalStackLayout Spacing="5">
-                        <Label Text="⚠️ iOS Reminder"
+                        <Label Text="⚠️ Settings Required"
                                FontAttributes="Bold"
                                TextColor="DarkSlateGray" />
-                        <Label Text="Please ensure System Haptics are enabled in your iOS settings:"
+                        <Label Text="Please ensure System Haptics are enabled in your settings:"
                                TextColor="DarkSlateGray" />
-                        <Label Text="Settings → Sounds &amp; Haptics → System Haptics"
+                        <Label IsVisible="{OnPlatform Android=true, Default=false}"
+                               Text="Settings → Sound &amp; vibration → Vibration &amp; Haptics"
+                               FontAttributes="Italic"
+                               TextColor="DarkSlateGray" />
+                        <Label IsVisible="{OnPlatform iOS=true, Default=false}"
+                               Text="Settings → Sounds &amp; Haptics → System Haptics"
                                FontAttributes="Italic"
                                TextColor="DarkSlateGray" />
                         <Button Text="Open Sound Settings"
-                                Clicked="OnOpenSoundSettingsClicked"
+                                Clicked="OnOpenSettingsClicked"
                                 Margin="0,10,0,0"
                                 BackgroundColor="#007AFF"
                                 TextColor="White" />

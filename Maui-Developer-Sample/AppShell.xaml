@@ -5,12 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Maui_Developer_Sample"
     xmlns:hf="clr-namespace:Maui_Developer_Sample.Pages.HF"
+    xmlns:pages="clr-namespace:Maui_Developer_Sample.Pages"
     Shell.FlyoutBehavior="Flyout"
     Title="Maui_Developer_Sample">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate pages:MainPage}"
         Route="MainPage" />
 
     <ShellContent
