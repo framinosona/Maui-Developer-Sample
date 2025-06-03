@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
+             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
+             xmlns:sensorsManager="clr-namespace:Framinosona.SensorsManager"
+             x:Class="Maui_Developer_Sample.Pages.Sensors.Gyroscope_Page"
+             Title="Gyroscope"
+             x:DataType="sensorsManager:BindableGyroscope"
+             BindingContext="{x:Static sensorsManager:BindableGyroscope.Instance}">
+    <ContentPage.Content>
+
+        <ScrollView VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="30"
+                                 Spacing="25">
+                <Label Text="Gyroscope"
+                       Style="{xaml:StaticResource Headline}" />
+                <Label Text="This shows how to use the gyroscope sensor"
+                       Style="{xaml:StaticResource SubHeadline}" />
+                <Grid ColumnDefinitions="Auto, 1*"
+                      ColumnSpacing="6">
+                    <Switch Grid.Column="0"
+                            IsToggled="{Binding IsMonitoring}" />
+                    <Label Grid.Column="1"
+                           Text="{Binding Status}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Fill"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           LineBreakMode="WordWrap"
+                           FontFamily="OpenSansSemibold" />
+                </Grid>
+
+                <Label Text="Raw Gyroscope Values:"
+                       FontAttributes="Bold" />
+                <Grid ColumnDefinitions="1*, 1*, 1*"
+                      WidthRequest="300"
+                      ColumnSpacing="2"
+                      HorizontalOptions="Center">
+                    <views:RawValueLabel Grid.Column="0"
+                                         Value="{Binding X}"
+                                         MaxValue="2"
+                                         MinValue="-2"
+                                         Format="X: {0:F2}"
+                                         HorizontalOptions="Center" />
+                    <views:RawValueLabel Grid.Column="1"
+                                         Value="{Binding Y}"
+                                         MaxValue="2"
+                                         MinValue="-2"
+                                         Format="Y: {0:F2}" 
+                                         HorizontalOptions="Center"/>
+                    <views:RawValueLabel Grid.Column="2"
+                                         Value="{Binding Z}"
+                                         MaxValue="2"
+                                         MinValue="-2"
+                                         Format="Z: {0:F2}" 
+                                         HorizontalOptions="Center"/>
+                </Grid>
+
+                <Grid HeightRequest="300"
+                      ColumnDefinitions="1*,1*,1*"
+                      WidthRequest="300"
+                      HorizontalOptions="Center"
+                      ColumnSpacing="2">
+                    <views:BidirectionalIndicator Grid.Column="0"
+                                                  Orientation="Vertical"
+                                                  Value="{Binding X}" />
+                    <views:BidirectionalIndicator Grid.Column="1"
+                                                  Orientation="Vertical"
+                                                  Value="{Binding Y}" />
+                    <views:BidirectionalIndicator Grid.Column="2"
+                                                  Orientation="Vertical"
+                                                  Value="{Binding Z}" />
+                </Grid>
+                <Grid HeightRequest="100"
+                      ColumnDefinitions="1*,1*,1*"
+                      WidthRequest="300"
+                      ColumnSpacing="2"
+                      HorizontalOptions="Center">
+                    <views:RawValueImageView Grid.Column="0"
+                                             Value="{Binding X}"
+                                             MaxValue="2"
+                                             MinValue="-2"
+                                             Tolerance="0.1"
+                                             BackgroundColor="LightGray"
+                                             PositiveImageSource="rotation_x_arrow_pos"
+                                             NegativeImageSource="rotation_x_arrow_neg"
+                                             NeutralImageSource="rotation_x_empty" />
+                    <views:RawValueImageView Grid.Column="1"
+                                             Value="{Binding Y}"
+                                             MaxValue="2"
+                                             MinValue="-2"
+                                             Tolerance="0.1"
+                                             BackgroundColor="LightGray"
+                                             PositiveImageSource="rotation_y_arrow_pos"
+                                             NegativeImageSource="rotation_y_arrow_neg"
+                                             NeutralImageSource="rotation_y_empty" />
+                    <views:RawValueImageView Grid.Column="2"
+                                             Value="{Binding Z}"
+                                             MaxValue="2"
+                                             MinValue="-2"
+                                             Tolerance="0.1"
+                                             BackgroundColor="LightGray"
+                                             PositiveImageSource="rotation_z_arrow_pos"
+                                             NegativeImageSource="rotation_z_arrow_neg"
+                                             NeutralImageSource="rotation_z_empty" />
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

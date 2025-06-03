@@ -25,6 +25,9 @@
             <Button Text="Compass"
                     Clicked="OnNavigateToCompassClicked"
                     HorizontalOptions="Fill" />
+            <Button Text="Gyroscope"
+                    Clicked="OnNavigateToGyroscopeClicked"
+                    HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 

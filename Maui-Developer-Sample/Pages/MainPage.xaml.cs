@@ -1,3 +1,4 @@
+using Maui_Developer_Sample.Pages.Sensors;
 using Maui_Developer_Sample.Pages.Vibrations;
 
 namespace Maui_Developer_Sample.Pages;
@@ -27,6 +28,11 @@ public partial class MainPage : ContentPage
     private void OnNavigateToCompassClicked(object? sender, EventArgs e)
     {
         App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Compass_Page)}");
+    }
+
+    private void OnNavigateToGyroscopeClicked(object? sender, EventArgs e)
+    {
+        App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Gyroscope_Page)}");
     }
     
 

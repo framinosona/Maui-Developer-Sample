@@ -15,6 +15,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(Accelerometer_Page), typeof(Accelerometer_Page));
         Routing.RegisterRoute(nameof(Barometer_Page), typeof(Barometer_Page));
         Routing.RegisterRoute(nameof(Compass_Page), typeof(Compass_Page));
+        Routing.RegisterRoute(nameof(Gyroscope_Page), typeof(Gyroscope_Page));
 
     }
 }

@@ -34,4 +34,9 @@
         Title="Compass"
         ContentTemplate="{DataTemplate sensors:Compass_Page}"
         Route="Compass_Page" />
+    
+    <ShellContent
+        Title="Gyroscope"
+        ContentTemplate="{DataTemplate sensors:Gyroscope_Page}"
+        Route="Gyroscope_Page" />
 </Shell>
