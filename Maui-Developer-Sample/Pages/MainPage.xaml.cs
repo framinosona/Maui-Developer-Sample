@@ -1,4 +1,6 @@
-﻿namespace Maui_Developer_Sample.Pages;
+using Maui_Developer_Sample.Pages.Vibrations;
+
+namespace Maui_Developer_Sample.Pages;
 
 public partial class MainPage : ContentPage
 {
@@ -7,8 +9,11 @@ public partial class MainPage : ContentPage
         InitializeComponent();
     }
 
-    private void OnNavigateToHFP1Clicked(object? sender, EventArgs e)
+    private void OnNavigateToHapticFeedbackSimpleClicked(object? sender, EventArgs e)
     {
-        App.AppShell.GoToAsync("//MainPage/HFP_Page1");
+        App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(HapticFeedbackSimple_Page)}");
     }
+    
+    
+
 }

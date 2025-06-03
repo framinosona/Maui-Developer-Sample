@@ -2,27 +2,32 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Maui_Developer_Sample.Pages.HF.HFP_Page1"
-             Title="Haptic Feedback Demo 1">
-    <ContentPage.Content>
-        <ScrollView>
-            <VerticalStackLayout Spacing="20"
-                                 Padding="20"
-                                 VerticalOptions="Center">
-                <Label Text="Haptic Feedback Demo 1"
-                       FontSize="24"
-                       HorizontalOptions="Center"
-                       Margin="0,0,0,20" />
+             xmlns:controls="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+             xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
+             xmlns:sensorsManager="clr-namespace:Maui_Developer_Sample.Pages.Vibrations.BindableHapticFeedback"
+             x:Class="Maui_Developer_Sample.Pages.Vibrations.HapticFeedbackSimple_Page"
+             Title="Haptic Feedback"
+             x:DataType="sensorsManager:BindableHapticFeedbackSimple"
+             BindingContext="{x:Static sensorsManager:BindableHapticFeedbackSimple.Instance}">
+       <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="30"
+                                 Spacing="25">
+                <Label Text="Haptic Feedback"
+                       Style="{xaml:StaticResource Headline}" />
+                <Label Text="This demo shows how to use MAUI's haptics controls"
+                       Style="{xaml:StaticResource SubHeadline}" />
 
                 <Button Text="Click (Standard)"
-                        Clicked="OnStandardClicked"
+                        Command="{Binding VibrateClickCommand}"
                         HorizontalOptions="Fill" />
 
                 <Button Text="Long Press (Medium)"
-                        Clicked="OnMediumClicked"
+                        Command="{Binding VibrateLongPressCommand}"
                         HorizontalOptions="Fill" />
 
-                <Border IsVisible="{OnPlatform iOS=true, Android=true, Default=false}"
+                <Border IsVisible="{xaml:OnPlatform iOS=true, Android=true, Default=false}"
                         BackgroundColor="LightYellow"
                         Stroke="Orange"
                         StrokeThickness="1"
@@ -35,11 +40,11 @@
                                TextColor="DarkSlateGray" />
                         <Label Text="Please ensure System Haptics are enabled in your settings:"
                                TextColor="DarkSlateGray" />
-                        <Label IsVisible="{OnPlatform Android=true, Default=false}"
+                        <Label IsVisible="{xaml:OnPlatform Android=true, Default=false}"
                                Text="Settings → Sound &amp; vibration → Vibration &amp; Haptics"
                                FontAttributes="Italic"
                                TextColor="DarkSlateGray" />
-                        <Label IsVisible="{OnPlatform iOS=true, Default=false}"
+                        <Label IsVisible="{xaml:OnPlatform iOS=true, Default=false}"
                                Text="Settings → Sounds &amp; Haptics → System Haptics"
                                FontAttributes="Italic"
                                TextColor="DarkSlateGray" />

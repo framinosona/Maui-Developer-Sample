@@ -1,4 +1,4 @@
-﻿using Maui_Developer_Sample.Pages.HF;
+using Maui_Developer_Sample.Pages.Vibrations;
 
 using Microsoft.Maui.Controls;
 
@@ -10,7 +10,7 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
         
-        Routing.RegisterRoute(nameof(HFP_Page1), typeof(HFP_Page1));
+        Routing.RegisterRoute(nameof(HapticFeedbackSimple_Page), typeof(HapticFeedbackSimple_Page));
 
     }
 }
