@@ -35,5 +35,10 @@ public partial class MainPage : ContentPage
         App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Gyroscope_Page)}");
     }
     
+    private void OnNavigateToMagnetometerClicked(object? sender, EventArgs e)
+    {
+        App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Magnetometer_Page)}");
+    }
+
 
 }

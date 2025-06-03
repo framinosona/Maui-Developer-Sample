@@ -28,6 +28,9 @@
             <Button Text="Gyroscope"
                     Clicked="OnNavigateToGyroscopeClicked"
                     HorizontalOptions="Fill" />
+            <Button Text="Magnetometer"
+                    Clicked="OnNavigateToMagnetometerClicked"
+                    HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 

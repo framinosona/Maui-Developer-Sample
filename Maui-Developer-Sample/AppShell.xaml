@@ -39,4 +39,9 @@
         Title="Gyroscope"
         ContentTemplate="{DataTemplate sensors:Gyroscope_Page}"
         Route="Gyroscope_Page" />
+    
+    <ShellContent
+        Title="Magnetometer"
+        ContentTemplate="{DataTemplate sensors:Magnetometer_Page}"
+        Route="Magnetometer_Page" />
 </Shell>

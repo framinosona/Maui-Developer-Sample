@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
+             xmlns:sensorsManager="clr-namespace:Framinosona.SensorsManager"
+             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
+             x:Class="Maui_Developer_Sample.Pages.Sensors.Magnetometer_Page"
+             Title="Magnetometer"
+             x:DataType="sensorsManager:BindableMagnetometer"
+             BindingContext="{x:Static sensorsManager:BindableMagnetometer.Instance}">
+    <ContentPage.Content>
+
+        <ScrollView VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="30"
+                                 Spacing="25">
+                <Label Text="Magnetometer"
+                       Style="{xaml:StaticResource Headline}" />
+                <Label Text="This shows how to use the magnetometer sensor"
+                       Style="{xaml:StaticResource SubHeadline}" />
+                <Grid ColumnDefinitions="Auto, 1*"
+                      ColumnSpacing="6">
+                    <Switch Grid.Column="0"
+                            IsToggled="{Binding IsMonitoring}" />
+                    <Label Grid.Column="1"
+                           Text="{Binding Status}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Fill"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           LineBreakMode="WordWrap"
+                           FontFamily="OpenSansSemibold" />
+                </Grid>
+
+                <Label Text="Raw Magnetometer Values:"
+                       FontAttributes="Bold" />
+                <Grid ColumnDefinitions="1*, 1*, 1*"
+                      WidthRequest="300"
+                      ColumnSpacing="2"
+                      HorizontalOptions="Center">
+                    <views:RawValueLabel Grid.Column="0"
+                                         Value="{Binding X}"
+                                         Format="X: {0:F2}"
+                                         HorizontalOptions="Center" />
+                    <views:RawValueLabel Grid.Column="1"
+                                         Value="{Binding Y}"
+                                         Format="Y: {0:F2}" 
+                                         HorizontalOptions="Center"/>
+                    <views:RawValueLabel Grid.Column="2"
+                                         Value="{Binding Z}"
+                                         Format="Z: {0:F2}" 
+                                         HorizontalOptions="Center"/>
+                </Grid>
+
+                <Grid HeightRequest="300"
+                      ColumnDefinitions="1*,1*,1*"
+                      WidthRequest="300"
+                      HorizontalOptions="Center"
+                      ColumnSpacing="2">
+                    <views:BidirectionalIndicator Grid.Column="0"
+                                                  Orientation="Vertical"
+                                                  MaxValue="360"
+                                                  MinValue="-360"
+                                                  Tolerance="0"
+                                                  Value="{Binding X}" />
+                    <views:BidirectionalIndicator Grid.Column="1"
+                                                  Orientation="Vertical"
+                                                  MaxValue="360"
+                                                  MinValue="-360"
+                                                  Tolerance="0"
+                                                  Value="{Binding Y}" />
+                    <views:BidirectionalIndicator Grid.Column="2"
+                                                  Orientation="Vertical"
+                                                  MaxValue="360"
+                                                  MinValue="-360"
+                                                  Tolerance="0"
+                                                  Value="{Binding Z}" />
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
