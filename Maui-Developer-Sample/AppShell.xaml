@@ -25,4 +25,9 @@
         ContentTemplate="{DataTemplate sensors:Accelerometer_Page}"
         Route="Accelerometer_Page" />
     
+    <ShellContent
+        Title="Barometer"
+        ContentTemplate="{DataTemplate sensors:Barometer_Page}"
+        Route="Barometer_Page" />
+    
 </Shell>

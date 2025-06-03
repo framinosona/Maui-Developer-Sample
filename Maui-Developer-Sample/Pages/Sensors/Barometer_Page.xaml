@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sensorsManager="clr-namespace:Framinosona.SensorsManager"
+             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
+             x:Class="Maui_Developer_Sample.Pages.Sensors.Barometer_Page"
+             Title="Barometer"
+             x:DataType="sensorsManager:BindableBarometer"
+             BindingContext="{x:Static sensorsManager:BindableBarometer.Instance}">
+    <ContentPage.Content>
+
+        <ScrollView VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="30"
+                                 Spacing="25">
+                <Label Text="Barometer"
+                       Style="{StaticResource Headline}" />
+                <Label Text="This shows how to use the barometer sensor"
+                       Style="{StaticResource SubHeadline}" />
+                <Grid ColumnDefinitions="Auto, 1*"
+                      ColumnSpacing="6">
+                    <Switch Grid.Column="0"
+                            IsToggled="{Binding IsMonitoring}" />
+                    <Label Grid.Column="1"
+                           Text="{Binding Status}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Fill"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           LineBreakMode="WordWrap"
+                           FontFamily="OpenSansSemibold" />
+                </Grid>
+                <Label Text="Raw Barometer Values:"
+                       FontAttributes="Bold" />
+                <Label Text="{Binding Pressure, StringFormat='Pressure: {0:F2}hPa'}" />
+                <Label Text="Note : typically from 950hPa to 1050hPa at sea level" />
+
+                <views:MonodirectionalIndicator Orientation="Vertical"
+                                                Value="{Binding Pressure}"
+                                                MinValue="950"
+                                                MaxValue="1050"
+                                                HeightRequest="300"
+                                                WidthRequest="300"
+                                                HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

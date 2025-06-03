@@ -28,5 +28,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Uses CMAltimeter</string>
 </dict>
 </plist>

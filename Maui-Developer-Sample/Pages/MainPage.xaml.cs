@@ -18,6 +18,11 @@ public partial class MainPage : ContentPage
     {
         App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Accelerometer_Page)}");
     }
+
+    private void OnNavigateToBarometerClicked(object? sender, EventArgs e)
+    {
+        App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Barometer_Page)}");
+    }
     
 
 }

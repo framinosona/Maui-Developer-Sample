@@ -19,6 +19,9 @@
             <Button Text="Accelerometer"
                     Clicked="OnNavigateToAccelerometerClicked"
                     HorizontalOptions="Fill" />
+            <Button Text="Barometer"
+                    Clicked="OnNavigateToBarometerClicked"
+                    HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 
