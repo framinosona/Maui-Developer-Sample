@@ -14,6 +14,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(HapticFeedback_Page), typeof(HapticFeedback_Page));
         Routing.RegisterRoute(nameof(Accelerometer_Page), typeof(Accelerometer_Page));
         Routing.RegisterRoute(nameof(Barometer_Page), typeof(Barometer_Page));
+        Routing.RegisterRoute(nameof(Compass_Page), typeof(Compass_Page));
 
     }
 }

@@ -22,6 +22,9 @@
             <Button Text="Barometer"
                     Clicked="OnNavigateToBarometerClicked"
                     HorizontalOptions="Fill" />
+            <Button Text="Compass"
+                    Clicked="OnNavigateToCompassClicked"
+                    HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 

@@ -30,4 +30,8 @@
         ContentTemplate="{DataTemplate sensors:Barometer_Page}"
         Route="Barometer_Page" />
     
+    <ShellContent
+        Title="Compass"
+        ContentTemplate="{DataTemplate sensors:Compass_Page}"
+        Route="Compass_Page" />
 </Shell>

@@ -23,6 +23,11 @@ public partial class MainPage : ContentPage
     {
         App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Barometer_Page)}");
     }
+
+    private void OnNavigateToCompassClicked(object? sender, EventArgs e)
+    {
+        App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Compass_Page)}");
+    }
     
 
 }

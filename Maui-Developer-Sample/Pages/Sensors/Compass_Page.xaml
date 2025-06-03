@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
+             xmlns:sensorsManager="clr-namespace:Framinosona.SensorsManager"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
+             x:Class="Maui_Developer_Sample.Pages.Sensors.Compass_Page"
+             Title="Compass"
+             x:DataType="sensorsManager:BindableCompass"
+             BindingContext="{x:Static sensorsManager:BindableCompass.Instance}">
+       <ContentPage.Resources>
+              <toolkit:MathExpressionConverter x:Key="MathExpressionConverter" />
+       </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <ScrollView VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="30"
+                                 Spacing="25">
+                <Label Text="Compass"
+                       Style="{StaticResource Headline}" />
+                <Label Text="This shows how to use the compass sensor"
+                       Style="{StaticResource SubHeadline}" />
+                <Grid ColumnDefinitions="Auto, 1*"
+                      ColumnSpacing="6">
+                    <Switch Grid.Column="0"
+                            IsToggled="{Binding IsMonitoring}" />
+                    <Label Grid.Column="1"
+                           Text="{Binding Status}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Fill"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           LineBreakMode="WordWrap"
+                           FontFamily="OpenSansSemibold" />
+                </Grid>
+                <Label Text="Raw Compass Values:"
+                       FontAttributes="Bold" />
+                <Label Text="{Binding Heading, StringFormat='Heading: {0:F2}°'}" />
+
+                <!-- Smartphone SVG -->
+                <Image x:Name="CompassImage"
+                       Source="compass"
+                       WidthRequest="200"
+                       HeightRequest="200"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" 
+                       Rotation="{Binding Heading, Converter={StaticResource MathExpressionConverter}, ConverterParameter='-x'}"/>
+                
+                <views:MonodirectionalIndicator 
+                                              Orientation="Horizontal"
+                                              Value="{Binding Heading}" 
+                                              MaxValue="360"
+                                              MinValue="0"
+                                              Tolerance="0"
+                                              HorizontalOptions="Fill"
+                                              HeightRequest="30"/>
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>
