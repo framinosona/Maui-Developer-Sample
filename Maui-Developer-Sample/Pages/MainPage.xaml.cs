@@ -11,7 +11,7 @@ public partial class MainPage : ContentPage
 
     private void OnNavigateToHapticFeedbackSimpleClicked(object? sender, EventArgs e)
     {
-        App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(HapticFeedbackSimple_Page)}");
+        App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(HapticFeedback_Page)}");
     }
     
     

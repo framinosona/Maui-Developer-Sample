@@ -16,6 +16,6 @@
 
     <ShellContent
         Title="Haptic Feedback Simple"
-        ContentTemplate="{DataTemplate vibrations:HapticFeedbackSimple_Page}"
+        ContentTemplate="{DataTemplate vibrations:HapticFeedback_Page}"
         Route="HapticFeedbackSimple_Page" />
 </Shell>

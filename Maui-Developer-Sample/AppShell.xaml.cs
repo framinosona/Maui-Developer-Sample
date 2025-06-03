@@ -10,7 +10,7 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
         
-        Routing.RegisterRoute(nameof(HapticFeedbackSimple_Page), typeof(HapticFeedbackSimple_Page));
+        Routing.RegisterRoute(nameof(HapticFeedback_Page), typeof(HapticFeedback_Page));
 
     }
 }

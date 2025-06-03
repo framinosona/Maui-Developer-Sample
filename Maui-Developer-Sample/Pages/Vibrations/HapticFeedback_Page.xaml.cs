@@ -1,8 +1,8 @@
 namespace Maui_Developer_Sample.Pages.Vibrations;
 
-public partial class HapticFeedbackSimple_Page : ContentPage
+public partial class HapticFeedback_Page : ContentPage
 {
-    public HapticFeedbackSimple_Page()
+    public HapticFeedback_Page()
     {
         InitializeComponent();
     }
