@@ -1,4 +1,4 @@
-using Maui_Developer_Sample.Pages.Sensors;
+﻿using Maui_Developer_Sample.Pages.Sensors;
 using Maui_Developer_Sample.Pages.Vibrations;
 
 namespace Maui_Developer_Sample.Pages;
@@ -34,11 +34,16 @@ public partial class MainPage : ContentPage
     {
         App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Gyroscope_Page)}");
     }
-    
+
     private void OnNavigateToMagnetometerClicked(object? sender, EventArgs e)
     {
         App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Magnetometer_Page)}");
     }
 
+    private void OnNavigateToOrientationSensorClicked(object? sender, EventArgs e)
+    {
+        App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(OrientationSensor_Page)}");
+    }
+    
 
 }

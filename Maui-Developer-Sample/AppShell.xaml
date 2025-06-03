@@ -44,4 +44,11 @@
         Title="Magnetometer"
         ContentTemplate="{DataTemplate sensors:Magnetometer_Page}"
         Route="Magnetometer_Page" />
+    
+    <ShellContent
+        Title="Orientation Sensor"
+        ContentTemplate="{DataTemplate sensors:OrientationSensor_Page}"
+        Route="OrientationSensor_Page" />
+    
+    
 </Shell>

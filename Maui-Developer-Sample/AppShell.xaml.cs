@@ -1,4 +1,4 @@
-using Maui_Developer_Sample.Pages.Vibrations;
+﻿using Maui_Developer_Sample.Pages.Vibrations;
 using Maui_Developer_Sample.Pages.Sensors;
 
 using Microsoft.Maui.Controls;
@@ -17,6 +17,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(Compass_Page), typeof(Compass_Page));
         Routing.RegisterRoute(nameof(Gyroscope_Page), typeof(Gyroscope_Page));
         Routing.RegisterRoute(nameof(Magnetometer_Page), typeof(Magnetometer_Page));
+        Routing.RegisterRoute(nameof(OrientationSensor_Page), typeof(OrientationSensor_Page));
 
     }
 }
