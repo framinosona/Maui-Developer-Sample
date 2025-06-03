@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
+             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors"
+             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
+             xmlns:sensorsManager="clr-namespace:Framinosona.SensorsManager"
+             x:Class="Maui_Developer_Sample.Pages.Sensors.Accelerometer_Page"
+             Title="Accelerometer"
+             x:DataType="sensorsManager:BindableAccelerometer"
+             BindingContext="{x:Static sensorsManager:BindableAccelerometer.Instance}">
+    <ContentPage.Content>
+
+        <ScrollView VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="30"
+                                 Spacing="25">
+                <Label Text="Accelerometer"
+                       Style="{xaml:StaticResource Headline}" />
+                <Label Text="This shows how to use the accelerometer sensor"
+                       Style="{xaml:StaticResource SubHeadline}" />
+                <Grid ColumnDefinitions="Auto, 1*"
+                      ColumnSpacing="6">
+                    <Switch Grid.Column="0"
+                            IsToggled="{Binding IsMonitoring}" />
+                    <Label Grid.Column="1"
+                           Text="{Binding Status}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Fill"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           LineBreakMode="WordWrap"
+                           FontFamily="OpenSansSemibold" />
+                </Grid>
+
+                <Label Text="Raw Accelerometer Values:"
+                       FontAttributes="Bold" />
+                <Grid ColumnDefinitions="1*, 1*, 1*">
+                       <views:RawValueLabel Grid.Column="0"
+                                            Value="{Binding X}"
+                                            MaxValue="2"
+                                            MinValue="-2"
+                                            Format="X: {0:F2} G"  />
+                       <views:RawValueLabel Grid.Column="1"
+                                            Value="{Binding Y}"
+                                            MaxValue="2"
+                                            MinValue="-2"
+                                            Format="Y: {0:F2} G"  />
+                       <views:RawValueLabel Grid.Column="2"
+                                            Value="{Binding Z}"
+                                            MaxValue="2"
+                                            MinValue="-2"
+                                            Format="Z: {0:F2} G"  />
+                </Grid>
+                <Label Text="Note : 1G = 9,81m/s²" />
+
+                <Grid HeightRequest="300"
+                      WidthRequest="300"
+                      ColumnDefinitions="11*, 1*"
+                      RowDefinitions="11*, 1*"
+                      ColumnSpacing="2"
+                      RowSpacing="2"
+                      HorizontalOptions="Center">
+                    <views:ZAxisIndicator Grid.Column="0"
+                                          Grid.Row="0"
+                                          Value="{Binding Z}"
+                                          MaxValue="2"
+                                          MinValue="-2"/>
+                    <views:BidirectionalIndicator Grid.Column="1"
+                                                  Grid.Row="0"
+                                                  Orientation="Vertical"
+                                                  Value="{Binding Y}" 
+                                                  MaxValue="2"
+                                                  MinValue="-2"/>
+                    <views:BidirectionalIndicator Grid.Column="0"
+                                                  Grid.Row="1"
+                                                  Orientation="Horizontal"
+                                                  Value="{Binding X}" 
+                                                  MaxValue="2"
+                                                  MinValue="-2"/>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

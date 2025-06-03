@@ -14,6 +14,10 @@ public partial class MainPage : ContentPage
         App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(HapticFeedback_Page)}");
     }
     
+    private void OnNavigateToAccelerometerClicked(object? sender, EventArgs e)
+    {
+        App.AppShell.GoToAsync($"//{nameof(MainPage)}/{nameof(Accelerometer_Page)}");
+    }
     
 
 }

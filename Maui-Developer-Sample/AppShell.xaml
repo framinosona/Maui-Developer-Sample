@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Maui_Developer_Sample"
     xmlns:pages="clr-namespace:Maui_Developer_Sample.Pages"
     xmlns:vibrations="clr-namespace:Maui_Developer_Sample.Pages.Vibrations"
+    xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors"
     Shell.FlyoutBehavior="Flyout"
     Title="Maui_Developer_Sample">
 
@@ -18,4 +19,10 @@
         Title="Haptic Feedback Simple"
         ContentTemplate="{DataTemplate vibrations:HapticFeedback_Page}"
         Route="HapticFeedbackSimple_Page" />
+    
+    <ShellContent
+        Title="Accelerometer"
+        ContentTemplate="{DataTemplate sensors:Accelerometer_Page}"
+        Route="Accelerometer_Page" />
+    
 </Shell>
