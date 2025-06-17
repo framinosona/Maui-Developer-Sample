@@ -1,6 +1,4 @@
-using System.ComponentModel;
-
-namespace Framinosona.SensorsManager;
+namespace Maui_Developer_Sample.Pages.Sensors.BindableSensorManagers;
 
 public class BindableAccelerometer : BindableObject
 {

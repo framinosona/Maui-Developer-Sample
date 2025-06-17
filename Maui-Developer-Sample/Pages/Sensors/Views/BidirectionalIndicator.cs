@@ -118,13 +118,13 @@ public partial class BidirectionalIndicator : BaseIndicator
                 {
                     // Draw positive value
                     canvas.FillColor = Colors.DarkGreen;
-                    DrawHorizontalPositiveValue(Math.Abs(value/_parent.MaxValue), canvas, dirtyRect);
+                    DrawHorizontalPositiveValue(Math.Min(1, Math.Abs(value/_parent.MaxValue)), canvas, dirtyRect);
                 }
                 else if (value < _parent.MinValue * _parent.Tolerance)
                 {
                     // Draw negative value
                     canvas.FillColor = Colors.DarkRed;
-                    DrawHorizontalNegativeValue(Math.Abs(value/_parent.MinValue), canvas, dirtyRect);
+                    DrawHorizontalNegativeValue(Math.Min(1, Math.Abs(value/_parent.MinValue)), canvas, dirtyRect);
                 }
                 else
                 {
@@ -139,13 +139,13 @@ public partial class BidirectionalIndicator : BaseIndicator
                 {
                     // Draw positive value
                     canvas.FillColor = Colors.DarkGreen;
-                    DrawVerticalPositiveValue(Math.Abs(value/_parent.MaxValue), canvas, dirtyRect);
+                    DrawVerticalPositiveValue(Math.Min(1, Math.Abs(value/_parent.MaxValue)), canvas, dirtyRect);
                 }
                 else if (value < _parent.MinValue * _parent.Tolerance)
                 {
                     // Draw negative value
                     canvas.FillColor = Colors.DarkRed;
-                    DrawVerticalNegativeValue(Math.Abs(value/_parent.MinValue), canvas, dirtyRect);
+                    DrawVerticalNegativeValue(Math.Min(1, Math.Abs(value/_parent.MinValue)), canvas, dirtyRect);
                 }
                 else
                 {

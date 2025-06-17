@@ -1,4 +1,4 @@
-namespace Framinosona.SensorsManager;
+namespace Maui_Developer_Sample.Pages.Sensors.BindableSensorManagers;
 
 public class BindableBarometer : BindableObject
 {
