@@ -8,10 +8,7 @@ public class BindableOrientationSensor : BindableObject
     private readonly static Lazy<BindableOrientationSensor> LazyInstance =
         new Lazy<BindableOrientationSensor>(() => new BindableOrientationSensor());
 
-    public static BindableOrientationSensor Instance
-    {
-        get => LazyInstance.Value;
-    }
+    public static BindableOrientationSensor Instance => LazyInstance.Value;
 
     #endregion
 

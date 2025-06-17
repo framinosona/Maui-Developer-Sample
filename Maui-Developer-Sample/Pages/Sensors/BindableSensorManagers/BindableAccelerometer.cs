@@ -8,10 +8,7 @@ public class BindableAccelerometer : BindableObject
     private readonly static Lazy<BindableAccelerometer> LazyInstance =
         new Lazy<BindableAccelerometer>(() => new BindableAccelerometer());
 
-    public static BindableAccelerometer Instance
-    {
-        get => LazyInstance.Value;
-    }
+    public static BindableAccelerometer Instance => LazyInstance.Value;
 
     #endregion
 

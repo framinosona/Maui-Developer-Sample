@@ -8,10 +8,7 @@ public class BindableGyroscope : BindableObject
     private readonly static Lazy<BindableGyroscope> LazyInstance =
         new Lazy<BindableGyroscope>(() => new BindableGyroscope());
 
-    public static BindableGyroscope Instance
-    {
-        get => LazyInstance.Value;
-    }
+    public static BindableGyroscope Instance => LazyInstance.Value;
 
     #endregion
 

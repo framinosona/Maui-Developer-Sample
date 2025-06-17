@@ -8,10 +8,7 @@ public class BindableBarometer : BindableObject
     private readonly static Lazy<BindableBarometer> LazyInstance =
         new Lazy<BindableBarometer>(() => new BindableBarometer());
 
-    public static BindableBarometer Instance
-    {
-        get => LazyInstance.Value;
-    }
+    public static BindableBarometer Instance => LazyInstance.Value;
 
     #endregion
 

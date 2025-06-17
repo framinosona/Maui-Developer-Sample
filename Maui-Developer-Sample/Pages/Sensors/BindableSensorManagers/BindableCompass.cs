@@ -7,10 +7,7 @@ public class BindableCompass : BindableObject
 
     private readonly static Lazy<BindableCompass> LazyInstance = new Lazy<BindableCompass>(() => new BindableCompass());
 
-    public static BindableCompass Instance
-    {
-        get => LazyInstance.Value;
-    }
+    public static BindableCompass Instance => LazyInstance.Value;
 
     #endregion
 

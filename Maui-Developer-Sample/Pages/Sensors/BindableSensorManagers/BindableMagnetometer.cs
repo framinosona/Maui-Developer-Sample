@@ -8,10 +8,7 @@ public class BindableMagnetometer : BindableObject
     private readonly static Lazy<BindableMagnetometer> LazyInstance =
         new Lazy<BindableMagnetometer>(() => new BindableMagnetometer());
 
-    public static BindableMagnetometer Instance
-    {
-        get => LazyInstance.Value;
-    }
+    public static BindableMagnetometer Instance => LazyInstance.Value;
 
     #endregion
 
