@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
+             xmlns:converters="clr-namespace:Maui_Developer_Sample.Pages.AppCapability.Converters"
+             xmlns:appCapability="clr-namespace:Maui_Developer_Sample.Pages.AppCapability.Services"
+             x:Class="Maui_Developer_Sample.Pages.AppCapability.Vibration_Page"
+             Title="Vibration"
+             x:DataType="appCapability:Vibration_Service">
+    <ContentPage.Resources>
+        <converters:MillisecondsToSecondsStringConverter x:Key="MillisecondsToSecondsStringConverter" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="30"
+                                 Spacing="25">
+                <Label Text="This demo shows how to use MAUI's Vibration API"
+                       Style="{xaml:StaticResource SubHeadline}" />
+
+                <Button
+                    Text="{Binding DurationInMs, StringFormat='Vibrate for {0} s', Converter={StaticResource MillisecondsToSecondsStringConverter}}"
+                    Command="{Binding VibrateCommand}"
+                    HorizontalOptions="Fill" />
+                <Slider Minimum="0"
+                        Maximum="5000"
+                        Value="{Binding  DurationInMs, Mode=TwoWay}"
+                        IsEnabled="{xaml:OnPlatform iOS=false, Default=true}" />
+                <Button Text="Cancel"
+                        Command="{Binding CancelCommand}"
+                        HorizontalOptions="Fill"
+                        IsEnabled="{xaml:OnPlatform iOS=false, Default=true}" />
+
+                <!-- iOS Disclaimer -->
+                <Border IsVisible="{xaml:OnPlatform iOS=true, Default=false}"
+                        BackgroundColor="DarkSalmon"
+                        Stroke="DarkRed"
+                        Style="{xaml:StaticResource Note}">
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="❌ iOS Limitation"
+                               FontAttributes="Bold"
+                               TextColor="DarkSlateGray" />
+                        <Label Text="500 milliseconds only; no cancellation support"
+                               TextColor="DarkSlateGray" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

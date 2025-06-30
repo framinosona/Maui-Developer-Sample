@@ -1,6 +1,4 @@
-﻿using ObjCRuntime;
-
-using UIKit;
+﻿using UIKit;
 
 namespace Maui_Developer_Sample;
 

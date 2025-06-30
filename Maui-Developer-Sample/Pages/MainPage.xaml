@@ -2,19 +2,23 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Maui_Developer_Sample.Pages.MainPage">
+             x:Class="Maui_Developer_Sample.Pages.MainPage"
+             NavigationPage.HasNavigationBar="False">
     <ScrollView VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
         <VerticalStackLayout Padding="30"
                              Spacing="25">
-            <Label Text="Haptic Feedback / Vibration"
+            <Label Text="App capability"
                    Style="{StaticResource SubHeadline}"/>
             <Button Text="Haptic Feedback"
-                    Clicked="OnNavigateToHapticFeedbackSimpleClicked"
+                    Clicked="OnNavigateToHapticFeedbackClicked"
+                    HorizontalOptions="Fill" />
+            <Button Text="Vibration"
+                    Clicked="OnNavigateToVibrationClicked"
                     HorizontalOptions="Fill" />
 
 
-            <Label Text="Gyro/Accel/Magne/Orient"
+            <Label Text="Sensors"
                    Style="{StaticResource SubHeadline}" />
             <Button Text="Accelerometer"
                     Clicked="OnNavigateToAccelerometerClicked"
@@ -33,6 +37,12 @@
                     HorizontalOptions="Fill" />
             <Button Text="Orientation Sensor"
                     Clicked="OnNavigateToOrientationSensorClicked"
+                    HorizontalOptions="Fill" />
+            
+            <Label Text="Graphics / Drawable"
+                   Style="{StaticResource SubHeadline}"/>
+            <Button Text="DrawArc"
+                    Clicked="OnNavigateToDrawArcClicked"
                     HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>

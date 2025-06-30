@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace Maui_Developer_Sample.Pages.Sensors.Views;
 
 public partial class BidirectionalIndicator : BaseIndicator

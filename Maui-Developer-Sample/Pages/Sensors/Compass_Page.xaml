@@ -2,14 +2,12 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-             xmlns:sensorsManager="clr-namespace:Maui_Developer_Sample.Pages.Sensors.BindableSensorManagers"
+             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
              x:Class="Maui_Developer_Sample.Pages.Sensors.Compass_Page"
-             Title="Compass"
-             x:DataType="sensorsManager:BindableCompass"
-             BindingContext="{x:Static sensorsManager:BindableCompass.Instance}">
+             Title="{Binding .}"
+             x:DataType="sensors:Compass_Service">
        <ContentPage.Resources>
               <toolkit:MathExpressionConverter x:Key="MathExpressionConverter" />
        </ContentPage.Resources>
@@ -19,8 +17,6 @@
                     HorizontalOptions="FillAndExpand">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
-                <Label Text="Compass"
-                       Style="{StaticResource Headline}" />
                 <Label Text="This shows how to use the compass sensor"
                        Style="{StaticResource SubHeadline}" />
                 <Grid ColumnDefinitions="Auto, 1*"

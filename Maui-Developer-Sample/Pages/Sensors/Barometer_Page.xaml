@@ -3,19 +3,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-             xmlns:sensorsManager="clr-namespace:Maui_Developer_Sample.Pages.Sensors.BindableSensorManagers"
+             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
              x:Class="Maui_Developer_Sample.Pages.Sensors.Barometer_Page"
-             Title="Barometer"
-             x:DataType="sensorsManager:BindableBarometer"
-             BindingContext="{x:Static sensorsManager:BindableBarometer.Instance}">
+             Title="{Binding .}"
+             x:DataType="sensors:Barometer_Service">
     <ContentPage.Content>
 
         <ScrollView VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
-                <Label Text="Barometer"
-                       Style="{StaticResource Headline}" />
                 <Label Text="This shows how to use the barometer sensor"
                        Style="{StaticResource SubHeadline}" />
                 <Grid ColumnDefinitions="Auto, 1*"

@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace Maui_Developer_Sample.Pages.Sensors.Views;
 public class ZAxisIndicator : BaseIndicator
 {
@@ -42,7 +40,7 @@ public class ZAxisIndicator : BaseIndicator
             canvas.StrokeSize = 2;
             canvas.DrawRectangle(dirtyRect);
             
-            dirtyRect = dirtyRect.Inflate(-2, -2); // Inflate the dirty rectangle to avoid drawing on the border
+            dirtyRect = dirtyRect.Inflate(-2, -2); // Deflate the dirty rectangle to avoid drawing on the border
 
             float value = _parent.Value;
             

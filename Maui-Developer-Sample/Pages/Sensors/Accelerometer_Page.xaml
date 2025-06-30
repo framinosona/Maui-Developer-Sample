@@ -3,21 +3,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
-             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors"
              xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-             xmlns:sensorsManager="clr-namespace:Maui_Developer_Sample.Pages.Sensors.BindableSensorManagers"
+             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
              x:Class="Maui_Developer_Sample.Pages.Sensors.Accelerometer_Page"
-             Title="Accelerometer"
-             x:DataType="sensorsManager:BindableAccelerometer"
-             BindingContext="{x:Static sensorsManager:BindableAccelerometer.Instance}">
+             Title="{Binding .}"
+             x:DataType="sensors:Accelerometer_Service">
     <ContentPage.Content>
 
         <ScrollView VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
-                <Label Text="Accelerometer"
-                       Style="{xaml:StaticResource Headline}" />
                 <Label Text="This shows how to use the accelerometer sensor"
                        Style="{xaml:StaticResource SubHeadline}" />
                 <Grid ColumnDefinitions="Auto, 1*"

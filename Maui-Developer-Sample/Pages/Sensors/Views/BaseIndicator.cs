@@ -51,7 +51,7 @@ public abstract class BaseIndicator : GraphicsView
     public readonly static BindableProperty ToleranceProperty = BindableProperty.Create(nameof(Tolerance),
         typeof(float),
         typeof(BaseIndicator),
-        defaultValue: 0.04f,
+        defaultValue: 0.02f,
         propertyChanged: (bindable, oldValue, newValue) => {
             var control = (BaseIndicator) bindable;
             control.Invalidate();

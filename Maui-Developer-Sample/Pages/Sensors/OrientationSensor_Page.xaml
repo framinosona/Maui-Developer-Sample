@@ -4,20 +4,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
              xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-             xmlns:sensorsManager="clr-namespace:Maui_Developer_Sample.Pages.Sensors.BindableSensorManagers"
+             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
              x:Class="Maui_Developer_Sample.Pages.Sensors.OrientationSensor_Page"
-             Title="Orientation Sensor"
-             x:DataType="sensorsManager:BindableOrientationSensor"
-             BindingContext="{x:Static sensorsManager:BindableOrientationSensor.Instance}">
+             Title="{Binding .}"
+             x:DataType="sensors:OrientationSensor_Service">
     <ContentPage.Content>
         
         <ScrollView VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
-                <Label Text="Orientation Sensor"
-                       Style="{xaml:StaticResource Headline}" />
-                <Label Text="This shows how to use the orientation sensor"
+                <Label Text="This demo shows how to use MAUI's OrientationSensor sensor"
                        Style="{xaml:StaticResource SubHeadline}" />
                 <Grid ColumnDefinitions="Auto, 1*"
                       ColumnSpacing="6">

@@ -1,16 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Maui_Developer_Sample.Pages.Sensors.Services;
 
 namespace Maui_Developer_Sample.Pages.Sensors;
 
 public partial class Barometer_Page : ContentPage
 {
-    public Barometer_Page()
+    public Barometer_Page(Barometer_Service barometerService)
     {
         InitializeComponent();
+        BindingContext = barometerService;
     }
 }
 

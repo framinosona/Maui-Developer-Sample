@@ -8,12 +8,12 @@ public class RawValueLabel : Label
         if (control.Value > control.MaxValue * control.Tolerance)
         {
             control.TextColor = Colors.DarkGreen;
-            control.Text = string.Format(control.Format, control.Value) + "🔺";
+            control.Text = string.Format(control.Format, control.Value) + control.PositiveGlyph;
         }
         else if (control.Value < control.MinValue * control.Tolerance)
         {
             control.TextColor = Colors.DarkRed;
-            control.Text = string.Format(control.Format, control.Value) + "🔻";
+            control.Text = string.Format(control.Format, control.Value) + control.NegativeGlyph;
         }
         else
         {
@@ -22,11 +22,34 @@ public class RawValueLabel : Label
         }
     }
     
+    public readonly static BindableProperty PositiveGlyphProperty = BindableProperty.Create(nameof(PositiveGlyph),
+                                                                                     typeof(string),
+                                                                                     typeof(RawValueLabel),
+                                                                                     defaultValue: "🔺",
+                                                                                     propertyChanged: Refresh);
+
+    public string PositiveGlyph
+    {
+        get => (string) GetValue(PositiveGlyphProperty);
+        set => SetValue(PositiveGlyphProperty, value);
+    }
+    public readonly static BindableProperty NegativeGlyphProperty = BindableProperty.Create(nameof(NegativeGlyph),
+                                                                                     typeof(string),
+                                                                                     typeof(RawValueLabel),
+                                                                                     defaultValue: "🔻",
+                                                                                     propertyChanged: Refresh);
+    
+    public string NegativeGlyph 
+    {
+        get => (string) GetValue(NegativeGlyphProperty);
+        set => SetValue(NegativeGlyphProperty, value);
+    }
+    
     public readonly static BindableProperty FormatProperty = BindableProperty.Create(nameof(Format),
-             typeof(string),
-             typeof(RawValueLabel),
-             defaultValue: "{0}",
-             propertyChanged: Refresh);
+                                                                                     typeof(string),
+                                                                                     typeof(RawValueLabel),
+                                                                                     defaultValue: "{0}",
+                                                                                     propertyChanged: Refresh);
 
     public string Format
     {
