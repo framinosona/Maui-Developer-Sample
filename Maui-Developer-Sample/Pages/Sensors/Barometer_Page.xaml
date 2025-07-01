@@ -9,8 +9,8 @@
              x:DataType="sensors:Barometer_Service">
     <ContentPage.Content>
 
-        <ScrollView VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand">
+        <ScrollView VerticalOptions="Fill"
+                    HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
                 <Label Text="This shows how to use the barometer sensor"

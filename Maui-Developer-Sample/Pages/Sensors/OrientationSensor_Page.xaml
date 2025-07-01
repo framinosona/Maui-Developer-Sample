@@ -10,8 +10,8 @@
              x:DataType="sensors:OrientationSensor_Service">
     <ContentPage.Content>
         
-        <ScrollView VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand">
+        <ScrollView VerticalOptions="Fill"
+                    HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
                 <Label Text="This demo shows how to use MAUI's OrientationSensor sensor"

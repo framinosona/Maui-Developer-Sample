@@ -8,8 +8,8 @@
              Title="Draw Arc"
              x:DataType="vm:DrawArc_ViewModel">
     <ContentPage.Content>
-        <ScrollView VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand">
+        <ScrollView VerticalOptions="Fill"
+                    HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
                 <Label Text="This demo shows how to use the DrawArc"
@@ -19,19 +19,19 @@
                         Maximum="360"
                         Value="{Binding StartAngle}"
                         ThumbColor="Green"
-                        HorizontalOptions="FillAndExpand" />
+                        HorizontalOptions="Fill" />
                 <Slider x:Name="EndAngleSlider"
                         Minimum="0"
                         Maximum="360"
                         Value="{Binding EndAngle}"
                         ThumbColor="Red"
-                        HorizontalOptions="FillAndExpand" />
+                        HorizontalOptions="Fill" />
                 <Slider x:Name="OffsetAngleSlider"
                         Minimum="-360"
                         Maximum="360"
                         Value="{Binding OffsetAngle}"
                         ThumbColor="Blue"
-                        HorizontalOptions="FillAndExpand" />
+                        HorizontalOptions="Fill" />
                 <HorizontalStackLayout Spacing="25">
                     <Switch x:Name="ClockwiseSwitch"
                             VerticalOptions="Center"
