@@ -2,7 +2,7 @@ namespace Maui_Developer_Sample.Pages.AppCapability.Services;
 
 public class Vibration_Service : BaseBindableAppCapability_Service
 {
-    protected override bool IsSupported() => HapticFeedback.Default.IsSupported;
+    protected override bool IsSupported() => Vibration.Default.IsSupported;
 
     public Vibration_Service()
     {
