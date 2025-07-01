@@ -65,17 +65,4 @@
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
     </ItemGroup>
-
-    <ItemGroup>
-      <MauiXaml Update="Pages\Vibrations\Vibration_Page.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Pages\Vibrations\Vibration_Page.xaml.cs">
-        <DependentUpon>Vibration_Page.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-    </ItemGroup>
 </Project>
