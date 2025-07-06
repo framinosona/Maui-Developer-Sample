@@ -1,45 +1,111 @@
 namespace Maui_Developer_Sample.Pages.Sensors.Services;
 
+/// <summary>
+/// Service for accessing device accelerometer data in real-time.
+/// Measures the acceleration forces acting on the device in 3D space.
+/// </summary>
+/// <remarks>
+/// The accelerometer measures acceleration in G-forces (1G ≈ 9.8 m/s²).
+/// Values include both device movement acceleration and gravity.
+///
+/// COORDINATE SYSTEM:
+/// - X-axis: Horizontal, positive values when device tilts right
+/// - Y-axis: Vertical, positive values when device tilts up
+/// - Z-axis: Depth, positive values when device face tilts toward user
+///
+/// TYPICAL VALUES:
+/// - At rest flat on table: X≈0, Y≈0, Z≈1 (gravity pulling down)
+/// - Held upright: X≈0, Y≈1, Z≈0 (gravity pulling toward bottom)
+/// - Values typically range from -3G to +3G during normal use
+/// - Can exceed ±3G during vigorous movement or impacts
+/// </remarks>
 public class Accelerometer_Service : BaseBindableSensor_Service
 {
-    protected override bool IsSupported() => Accelerometer.IsSupported;
-    
-    protected override bool IsSensorMonitoring() => Accelerometer.IsMonitoring;
+    public override bool IsSupported => Accelerometer.Default.IsSupported;
 
-    protected override void SubscribeToSensorEvents() => Accelerometer.ReadingChanged += OnReadingChanged;
+    /// <summary>
+    /// Acceleration along the X-axis in G-forces.
+    /// </summary>
+    /// <value>
+    /// Range: Typically -3.0 to +3.0 G (can exceed during impacts)
+    /// Positive: Device tilting right or accelerating rightward
+    /// Negative: Device tilting left or accelerating leftward
+    /// Zero: No horizontal acceleration or tilt
+    /// </value>
+    public float XinG
+    {
+        get => GetValue(0.0f);
+        set => SetValue(value);
+    }
 
-    protected override void UnsubscribeFromSensorEvents() => Accelerometer.ReadingChanged -= OnReadingChanged;
+    /// <summary>
+    /// Acceleration along the Y-axis in G-forces.
+    /// </summary>
+    /// <value>
+    /// Range: Typically -3.0 to +3.0 G (can exceed during impacts)
+    /// Positive: Device tilting up or accelerating upward
+    /// Negative: Device tilting down or accelerating downward
+    /// Zero: No vertical acceleration or tilt
+    /// </value>
+    public float YinG
+    {
+        get => GetValue(0.0f);
+        set => SetValue(value);
+    }
 
-    protected override void StartSensor() => Accelerometer.Start(SensorSpeed);
+    /// <summary>
+    /// Acceleration along the Z-axis in G-forces.
+    /// </summary>
+    /// <value>
+    /// Range: Typically -3.0 to +3.0 G (can exceed during impacts)
+    /// Positive: Device face tilting toward user or accelerating forward
+    /// Negative: Device face tilting away from user or accelerating backward
+    /// ~1.0: Device lying flat (gravity effect)
+    /// Zero: Device held perpendicular to ground
+    /// </value>
+    public float ZinG
+    {
+        get => GetValue(0.0f);
+        set => SetValue(value);
+    }
 
-    protected override void StopSensor() => Accelerometer.Stop();
+    protected override bool IsSensorMonitoring()
+    {
+        return Accelerometer.Default.IsMonitoring;
+    }
 
-    public override string ToString() => nameof(Accelerometer);
+    protected override void SubscribeToSensorEvents()
+    {
+        Accelerometer.Default.ReadingChanged += OnReadingChanged;
+    }
+
+    protected override void UnsubscribeFromSensorEvents()
+    {
+        Accelerometer.Default.ReadingChanged -= OnReadingChanged;
+    }
+
+    protected override void StartSensor()
+    {
+        Accelerometer.Default.Start(SensorSpeed);
+    }
+
+    protected override void StopSensor()
+    {
+        Accelerometer.Default.Stop();
+    }
+
+    public override string ToString()
+    {
+        return nameof(Accelerometer);
+    }
 
     private void OnReadingChanged(object? sender, AccelerometerChangedEventArgs e)
     {
-        MainThread.BeginInvokeOnMainThread(() => {
-            X = e.Reading.Acceleration.X;
-            Y = e.Reading.Acceleration.Y;
-            Z = e.Reading.Acceleration.Z;
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            XinG = e.Reading.Acceleration.X;
+            YinG = e.Reading.Acceleration.Y;
+            ZinG = e.Reading.Acceleration.Z;
         });
-    }
-
-    public float X
-    {
-        get => GetValue(0.0f);
-        set => SetValue(value);
-    }
-
-    public float Y
-    {
-        get => GetValue(0.0f);
-        set => SetValue(value);
-    }
-
-    public float Z
-    {
-        get => GetValue(0.0f);
-        set => SetValue(value);
     }
 }

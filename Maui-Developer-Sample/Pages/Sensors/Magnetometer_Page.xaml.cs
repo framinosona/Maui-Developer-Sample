@@ -10,4 +10,3 @@ public partial class Magnetometer_Page : ContentPage
         BindingContext = magnetometerService;
     }
 }
-

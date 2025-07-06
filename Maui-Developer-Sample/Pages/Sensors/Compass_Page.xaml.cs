@@ -10,4 +10,3 @@ public partial class Compass_Page
         BindingContext = compassService;
     }
 }
-

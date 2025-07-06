@@ -8,51 +8,49 @@
              x:Class="Maui_Developer_Sample.Pages.Sensors.Compass_Page"
              Title="{Binding .}"
              x:DataType="sensors:Compass_Service">
-       <ContentPage.Resources>
-              <toolkit:MathExpressionConverter x:Key="MathExpressionConverter" />
-       </ContentPage.Resources>
+    <ContentPage.Resources>
+        <toolkit:MathExpressionConverter x:Key="MathExpressionConverter" />
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+    </ContentPage.Resources>
     <ContentPage.Content>
 
         <ScrollView VerticalOptions="Fill"
                     HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
-                <Label Text="This shows how to use the compass sensor"
-                       Style="{StaticResource SubHeadline}" />
                 <Grid ColumnDefinitions="Auto, 1*"
-                      ColumnSpacing="6">
+                      ColumnSpacing="12">
                     <Switch Grid.Column="0"
-                            IsToggled="{Binding IsMonitoring}" />
+                            IsToggled="{Binding IsMonitoring}"
+                            IsEnabled="{Binding IsSupported}" />
                     <Label Grid.Column="1"
                            Text="{Binding Status}"
-                           HorizontalOptions="Fill"
-                           VerticalOptions="Fill"
-                           HorizontalTextAlignment="Start"
-                           VerticalTextAlignment="Center"
-                           LineBreakMode="WordWrap"
-                           FontFamily="OpenSansSemibold" />
+                           Style="{StaticResource StatusLabel}" />
                 </Grid>
+                <Label Text="Not available on this device"
+                       Style="{StaticResource StatusLabel}"
+                       TextColor="Red"
+                       IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
+
                 <Label Text="Raw Compass Values:"
                        FontAttributes="Bold" />
-                <Label Text="{Binding Heading, StringFormat='Heading: {0:F2}°'}" />
+                <Label Text="{Binding HeadingInDegrees, StringFormat='Heading: {0:F1}°'}" />
+                <Label Text="Note : from 0° to 360°" />
 
-                <!-- Smartphone SVG -->
-                <Image x:Name="CompassImage"
-                       Source="compass"
+                <Image Source="compass"
                        WidthRequest="200"
                        HeightRequest="200"
                        HorizontalOptions="Center"
-                       VerticalOptions="Center" 
-                       Rotation="{Binding Heading, Converter={StaticResource MathExpressionConverter}, ConverterParameter='-x'}"/>
-                
-                <views:MonodirectionalIndicator 
-                                              Orientation="Horizontal"
-                                              Value="{Binding Heading}" 
-                                              MaxValue="360"
-                                              MinValue="0"
-                                              Tolerance="0"
-                                              HorizontalOptions="Fill"
-                                              HeightRequest="30"/>
+                       VerticalOptions="Center"
+                       Rotation="{Binding HeadingInDegrees, Converter={StaticResource MathExpressionConverter}, ConverterParameter='-x'}" />
+
+                <views:MonodirectionalIndicator Orientation="Horizontal"
+                                                Value="{Binding HeadingInDegrees}"
+                                                MaxValue="360"
+                                                MinValue="0"
+                                                Tolerance="0"
+                                                HorizontalOptions="Fill"
+                                                HeightRequest="30" />
             </VerticalStackLayout>
         </ScrollView>
 

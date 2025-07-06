@@ -2,33 +2,34 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
              xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
              xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Maui_Developer_Sample.Pages.Sensors.Magnetometer_Page"
              Title="{Binding .}"
              x:DataType="sensors:Magnetometer_Service">
+    <ContentPage.Resources>
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+    </ContentPage.Resources>
     <ContentPage.Content>
 
         <ScrollView VerticalOptions="Fill"
                     HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
-                <Label Text="This demo shows how to use MAUI's Magnetometer sensor"
-                       Style="{xaml:StaticResource SubHeadline}" />
                 <Grid ColumnDefinitions="Auto, 1*"
-                      ColumnSpacing="6">
+                      ColumnSpacing="12">
                     <Switch Grid.Column="0"
-                            IsToggled="{Binding IsMonitoring}" />
+                            IsToggled="{Binding IsMonitoring}"
+                            IsEnabled="{Binding IsSupported}" />
                     <Label Grid.Column="1"
                            Text="{Binding Status}"
-                           HorizontalOptions="Fill"
-                           VerticalOptions="Fill"
-                           HorizontalTextAlignment="Start"
-                           VerticalTextAlignment="Center"
-                           LineBreakMode="WordWrap"
-                           FontFamily="OpenSansSemibold" />
+                           Style="{StaticResource StatusLabel}" />
                 </Grid>
+                <Label Text="Not available on this device"
+                       Style="{StaticResource StatusLabel}"
+                       TextColor="Red"
+                       IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
 
                 <Label Text="Raw Magnetometer Values:"
                        FontAttributes="Bold" />
@@ -37,17 +38,23 @@
                       ColumnSpacing="2"
                       HorizontalOptions="Center">
                     <views:RawValueLabel Grid.Column="0"
-                                         Value="{Binding X}"
-                                         Format="X: {0:F2}"
+                                         Value="{Binding XInMicroTesla}"
+                                         Format="X: {0:F0} µT"
+                                         MaxValue="400"
+                                         MinValue="-400"
                                          HorizontalOptions="Center" />
                     <views:RawValueLabel Grid.Column="1"
-                                         Value="{Binding Y}"
-                                         Format="Y: {0:F2}" 
-                                         HorizontalOptions="Center"/>
+                                         Value="{Binding YInMicroTesla}"
+                                         Format="Y: {0:F0} µT"
+                                         MaxValue="400"
+                                         MinValue="-400"
+                                         HorizontalOptions="Center" />
                     <views:RawValueLabel Grid.Column="2"
-                                         Value="{Binding Z}"
-                                         Format="Z: {0:F2}" 
-                                         HorizontalOptions="Center"/>
+                                         Value="{Binding ZInMicroTesla}"
+                                         Format="Z: {0:F0} µT"
+                                         MaxValue="400"
+                                         MinValue="-400"
+                                         HorizontalOptions="Center" />
                 </Grid>
 
                 <Grid HeightRequest="300"
@@ -57,22 +64,19 @@
                       ColumnSpacing="2">
                     <views:BidirectionalIndicator Grid.Column="0"
                                                   Orientation="Vertical"
-                                                  MaxValue="360"
-                                                  MinValue="-360"
-                                                  Tolerance="0"
-                                                  Value="{Binding X}" />
+                                                  MaxValue="400"
+                                                  MinValue="-400"
+                                                  Value="{Binding XInMicroTesla}" />
                     <views:BidirectionalIndicator Grid.Column="1"
                                                   Orientation="Vertical"
-                                                  MaxValue="360"
-                                                  MinValue="-360"
-                                                  Tolerance="0"
-                                                  Value="{Binding Y}" />
+                                                  MaxValue="400"
+                                                  MinValue="-400"
+                                                  Value="{Binding YInMicroTesla}" />
                     <views:BidirectionalIndicator Grid.Column="2"
                                                   Orientation="Vertical"
-                                                  MaxValue="360"
-                                                  MinValue="-360"
-                                                  Tolerance="0"
-                                                  Value="{Binding Z}" />
+                                                  MaxValue="400"
+                                                  MinValue="-400"
+                                                  Value="{Binding ZInMicroTesla}" />
                 </Grid>
             </VerticalStackLayout>
         </ScrollView>

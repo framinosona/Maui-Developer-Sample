@@ -2,33 +2,34 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
              xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
              xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Maui_Developer_Sample.Pages.Sensors.Gyroscope_Page"
              Title="{Binding .}"
              x:DataType="sensors:Gyroscope_Service">
+    <ContentPage.Resources>
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+    </ContentPage.Resources>
     <ContentPage.Content>
 
         <ScrollView VerticalOptions="Fill"
                     HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
-                <Label Text="This demo shows how to use MAUI's Gyroscope sensor"
-                       Style="{xaml:StaticResource SubHeadline}" />
                 <Grid ColumnDefinitions="Auto, 1*"
-                      ColumnSpacing="6">
+                      ColumnSpacing="12">
                     <Switch Grid.Column="0"
-                            IsToggled="{Binding IsMonitoring}" />
+                            IsToggled="{Binding IsMonitoring}"
+                            IsEnabled="{Binding IsSupported}" />
                     <Label Grid.Column="1"
                            Text="{Binding Status}"
-                           HorizontalOptions="Fill"
-                           VerticalOptions="Fill"
-                           HorizontalTextAlignment="Start"
-                           VerticalTextAlignment="Center"
-                           LineBreakMode="WordWrap"
-                           FontFamily="OpenSansSemibold" />
+                           Style="{StaticResource StatusLabel}" />
                 </Grid>
+                <Label Text="Not available on this device"
+                       Style="{StaticResource StatusLabel}"
+                       TextColor="Red"
+                       IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
 
                 <Label Text="Raw Gyroscope Values:"
                        FontAttributes="Bold" />
@@ -39,41 +40,43 @@
                       HorizontalOptions="Center">
 
                     <Label Grid.Row="0"
-                           Text="X" />
-                    <Label Grid.Row="1"
-                           Text="Y" />
-                    <Label Grid.Row="2"
-                           Text="Z" />
-                    
+                           Grid.Column="1"
+                           Text="X"
+                           HorizontalOptions="Center" />
                     <Label Grid.Row="0"
-                           Grid.Column="1"
-                           Text="{Binding XRadians, StringFormat='{0:F2}Rad/s'}" />
-                    <Label Grid.Row="1"
-                           Grid.Column="1"
-                           Text="{Binding YRadians, StringFormat='{0:F2}Rad/s'}" />
-                    <Label Grid.Row="2"
-                           Grid.Column="1"
-                           Text="{Binding ZRadians, StringFormat='{0:F2}Rad/s'}" />
+                           Grid.Column="2"
+                           Text="Y"
+                           HorizontalOptions="Center" />
+                    <Label Grid.Row="0"
+                           Grid.Column="3"
+                           Text="Z"
+                           HorizontalOptions="Center" />
 
-                    <Label Grid.Row="0"
-                           Grid.Column="2"
-                           Text="{Binding XDegrees, StringFormat='{0:F2}°/s'}" />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="Rad/s" />
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding XRadians, StringFormat='{0:F1}'}" />
                     <Label Grid.Row="1"
                            Grid.Column="2"
-                           Text="{Binding YDegrees, StringFormat='{0:F2}°/s'}" />
+                           Text="{Binding YRadians, StringFormat='{0:F1}'}" />
                     <Label Grid.Row="2"
-                           Grid.Column="2"
-                           Text="{Binding ZDegrees, StringFormat='{0:F2}°/s'}" />
+                           Grid.Column="3"
+                           Text="{Binding ZRadians, StringFormat='{0:F1}'}" />
 
-                    <Label Grid.Row="0"
-                           Grid.Column="3"
-                           Text="{Binding XPercentage, StringFormat='{0:F2}%/s'}" />
-                    <Label Grid.Row="1"
-                           Grid.Column="3"
-                           Text="{Binding YPercentage, StringFormat='{0:F2}%/s'}" />
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Text="Deg/s" />
+                    <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Text="{Binding XDegrees, StringFormat='{0:F0}'}" />
+                    <Label Grid.Row="2"
+                           Grid.Column="2"
+                           Text="{Binding YDegrees, StringFormat='{0:F0}'}" />
                     <Label Grid.Row="2"
                            Grid.Column="3"
-                           Text="{Binding ZPercentage, StringFormat='{0:F2}%/s'}" />
+                           Text="{Binding ZDegrees, StringFormat='{0:F0}'}" />
                 </Grid>
 
                 <Grid HeightRequest="300"
@@ -108,27 +111,24 @@
                       HorizontalOptions="Center">
                     <views:RawValueImageView Grid.Column="0"
                                              Value="{Binding XDegrees}"
-                                             MaxValue="2"
-                                             MinValue="-2"
-                                             Tolerance="0.1"
+                                             MaxValue="180"
+                                             MinValue="-180"
                                              BackgroundColor="LightGray"
                                              PositiveImageSource="rotation_x_arrow_pos"
                                              NegativeImageSource="rotation_x_arrow_neg"
                                              NeutralImageSource="rotation_x_empty" />
                     <views:RawValueImageView Grid.Column="1"
                                              Value="{Binding YDegrees}"
-                                             MaxValue="2"
-                                             MinValue="-2"
-                                             Tolerance="0.1"
+                                             MaxValue="180"
+                                             MinValue="-180"
                                              BackgroundColor="LightGray"
                                              PositiveImageSource="rotation_y_arrow_pos"
                                              NegativeImageSource="rotation_y_arrow_neg"
                                              NeutralImageSource="rotation_y_empty" />
                     <views:RawValueImageView Grid.Column="2"
                                              Value="{Binding ZDegrees}"
-                                             MaxValue="2"
-                                             MinValue="-2"
-                                             Tolerance="0.1"
+                                             MaxValue="360"
+                                             MinValue="-360"
                                              BackgroundColor="LightGray"
                                              PositiveImageSource="rotation_z_arrow_pos"
                                              NegativeImageSource="rotation_z_arrow_neg"

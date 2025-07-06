@@ -10,4 +10,3 @@ public partial class Barometer_Page : ContentPage
         BindingContext = barometerService;
     }
 }
-

@@ -10,4 +10,3 @@ public partial class Gyroscope_Page : ContentPage
         BindingContext = gyroscopeService;
     }
 }
-
