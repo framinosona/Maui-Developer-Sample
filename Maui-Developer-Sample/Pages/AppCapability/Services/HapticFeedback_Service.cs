@@ -8,7 +8,7 @@ public class HapticFeedback_Service : BaseBindableAppCapability_Service
         VibrateLongPressCommand = new Command(VibrateLongPress);
     }
 
-    protected override bool IsSupported() => HapticFeedback.Default.IsSupported;
+    public override bool IsSupported => HapticFeedback.Default.IsSupported;
     
     public void VibrateClick() => HapticFeedback.Default.Perform(HapticFeedbackType.Click);
 

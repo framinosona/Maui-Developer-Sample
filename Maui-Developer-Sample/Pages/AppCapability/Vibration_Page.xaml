@@ -5,19 +5,23 @@
              xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
              xmlns:converters="clr-namespace:Maui_Developer_Sample.Pages.AppCapability.Converters"
              xmlns:appCapability="clr-namespace:Maui_Developer_Sample.Pages.AppCapability.Services"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Maui_Developer_Sample.Pages.AppCapability.Vibration_Page"
              Title="Vibration"
              x:DataType="appCapability:Vibration_Service">
     <ContentPage.Resources>
         <converters:MillisecondsToSecondsStringConverter x:Key="MillisecondsToSecondsStringConverter" />
+        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView VerticalOptions="Fill"
                     HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
                                  Spacing="25">
-                <Label Text="This demo shows how to use MAUI's Vibration API"
-                       Style="{xaml:StaticResource SubHeadline}" />
+                <Label Text="Not available on this device"
+                       Style="{StaticResource StatusLabel}"
+                       TextColor="Red"
+                       IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
 
                 <Button
                     Text="{Binding DurationInMs, StringFormat='Vibrate for {0} s', Converter={StaticResource MillisecondsToSecondsStringConverter}}"
