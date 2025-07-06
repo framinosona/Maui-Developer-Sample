@@ -2,6 +2,19 @@ namespace Maui_Developer_Sample.Pages.Sensors.Views;
 
 public class RawValueImageView : ContentView
 {
+
+    public RawValueImageView()
+    {
+        PositiveImage = new Image { IsVisible = false };
+        NegativeImage = new Image { IsVisible = false };
+        NeutralImage = new Image { IsVisible = true };
+
+        Content = new Grid
+        {
+            Children = { PositiveImage, NegativeImage, NeutralImage }
+        };
+    }
+
     public static void Refresh(BindableObject bindable, object oldValue, object newValue)
     {
         var control = (RawValueImageView) bindable;
@@ -27,12 +40,11 @@ public class RawValueImageView : ContentView
 
     #region Value
 
-    public readonly static BindableProperty ValueProperty =
-        BindableProperty.Create(nameof(Value),
-                                typeof(float),
-                                typeof(RawValueImageView),
-                                defaultValue: 0.0f,
-                                propertyChanged: Refresh);
+    public readonly static BindableProperty ValueProperty = BindableProperty.Create(nameof(Value),
+                                                                                    typeof(float),
+                                                                                    typeof(RawValueImageView),
+                                                                                    0.0f,
+                                                                                    propertyChanged: Refresh);
 
     public float Value
     {
@@ -44,12 +56,11 @@ public class RawValueImageView : ContentView
 
     #region Tolerance
 
-    public readonly static BindableProperty ToleranceProperty =
-        BindableProperty.Create(nameof(Tolerance),
-                                typeof(float),
-                                typeof(RawValueImageView),
-                                defaultValue: 0.04f,
-                                propertyChanged: Refresh);
+    public readonly static BindableProperty ToleranceProperty = BindableProperty.Create(nameof(Tolerance),
+                                                                                        typeof(float),
+                                                                                        typeof(RawValueImageView),
+                                                                                        0.04f,
+                                                                                        propertyChanged: Refresh);
 
     public float Tolerance
     {
@@ -62,10 +73,10 @@ public class RawValueImageView : ContentView
     #region MaxValue
 
     public readonly static BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue),
-        typeof(float),
-        typeof(RawValueImageView),
-        defaultValue: 1.0f,
-        propertyChanged: Refresh);
+                                                                                       typeof(float),
+                                                                                       typeof(RawValueImageView),
+                                                                                       1.0f,
+                                                                                       propertyChanged: Refresh);
 
     public float MaxValue
     {
@@ -78,10 +89,10 @@ public class RawValueImageView : ContentView
     #region MinValue
 
     public readonly static BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue),
-        typeof(float),
-        typeof(RawValueImageView),
-        defaultValue: -1.0f,
-        propertyChanged: Refresh);
+                                                                                       typeof(float),
+                                                                                       typeof(RawValueImageView),
+                                                                                       -1.0f,
+                                                                                       propertyChanged: Refresh);
 
     public float MinValue
     {
@@ -93,14 +104,13 @@ public class RawValueImageView : ContentView
 
     #region PositiveImage
 
-    public readonly static BindableProperty PositiveImageSourceProperty =
-        BindableProperty.Create(nameof(PositiveImageSource),
-                                typeof(string),
-                                typeof(RawValueImageView),
-                                propertyChanged: (bindable, value, newValue) => {
-                                    var control = (RawValueImageView) bindable;
-                                    control.PositiveImage.Source = newValue.ToString();
-                                });
+    public readonly static BindableProperty PositiveImageSourceProperty = BindableProperty.Create(nameof(PositiveImageSource),
+                                                                                                  typeof(string),
+                                                                                                  typeof(RawValueImageView),
+                                                                                                  propertyChanged: (bindable, value, newValue) => {
+                                                                                                      var control = (RawValueImageView) bindable;
+                                                                                                      control.PositiveImage.Source = newValue.ToString();
+                                                                                                  });
 
     public string PositiveImageSource
     {
@@ -108,20 +118,19 @@ public class RawValueImageView : ContentView
         set => SetValue(PositiveImageSourceProperty, value);
     }
 
-    private Image PositiveImage { get; set; }
+    private Image PositiveImage { get; }
 
     #endregion
 
     #region NegativeImage
 
-    public readonly static BindableProperty NegativeImageSourceProperty =
-        BindableProperty.Create(nameof(NegativeImageSource),
-                                typeof(string),
-                                typeof(RawValueImageView),
-                                propertyChanged: (bindable, value, newValue) => {
-                                    var control = (RawValueImageView) bindable;
-                                    control.NegativeImage.Source = newValue.ToString();
-                                });
+    public readonly static BindableProperty NegativeImageSourceProperty = BindableProperty.Create(nameof(NegativeImageSource),
+                                                                                                  typeof(string),
+                                                                                                  typeof(RawValueImageView),
+                                                                                                  propertyChanged: (bindable, value, newValue) => {
+                                                                                                      var control = (RawValueImageView) bindable;
+                                                                                                      control.NegativeImage.Source = newValue.ToString();
+                                                                                                  });
 
     public string NegativeImageSource
     {
@@ -129,20 +138,19 @@ public class RawValueImageView : ContentView
         set => SetValue(NegativeImageSourceProperty, value);
     }
 
-    private Image NegativeImage { get; set; }
+    private Image NegativeImage { get; }
 
     #endregion
 
     #region NeutralImage
 
-    public readonly static BindableProperty NeutralImageSourceProperty =
-        BindableProperty.Create(nameof(NeutralImageSource),
-                                typeof(string),
-                                typeof(RawValueImageView),
-                                propertyChanged: (bindable, value, newValue) => {
-                                    var control = (RawValueImageView) bindable;
-                                    control.NeutralImage.Source = newValue.ToString();
-                                });
+    public readonly static BindableProperty NeutralImageSourceProperty = BindableProperty.Create(nameof(NeutralImageSource),
+                                                                                                 typeof(string),
+                                                                                                 typeof(RawValueImageView),
+                                                                                                 propertyChanged: (bindable, value, newValue) => {
+                                                                                                     var control = (RawValueImageView) bindable;
+                                                                                                     control.NeutralImage.Source = newValue.ToString();
+                                                                                                 });
 
     public string NeutralImageSource
     {
@@ -150,19 +158,8 @@ public class RawValueImageView : ContentView
         set => SetValue(NeutralImageSourceProperty, value);
     }
 
-    private Image NeutralImage { get; set; }
+    private Image NeutralImage { get; }
 
     #endregion
 
-    public RawValueImageView()
-    {
-        PositiveImage = new Image { IsVisible = false };
-        NegativeImage = new Image { IsVisible = false };
-        NeutralImage = new Image { IsVisible = true };
-
-        Content = new Grid
-        {
-            Children = { PositiveImage, NegativeImage, NeutralImage }
-        };
-    }
 }
