@@ -1,50 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Maui_Developer_Sample.Pages.MainPage"
-             NavigationPage.HasNavigationBar="False">
-    <ScrollView VerticalOptions="Fill"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="Maui_Developer_Sample.Pages.MainPage"
+        NavigationPage.HasNavigationBar="False">
+        <ScrollView VerticalOptions="Fill"
                 HorizontalOptions="Fill">
-        <VerticalStackLayout Padding="30"
-                             Spacing="25">
-            <Label Text="App capability"
-                   Style="{StaticResource SubHeadline}"/>
-            <Button Text="Haptic Feedback"
-                    Clicked="OnNavigateToHapticFeedbackClicked"
-                    HorizontalOptions="Fill" />
-            <Button Text="Vibration"
-                    Clicked="OnNavigateToVibrationClicked"
-                    HorizontalOptions="Fill" />
+                <VerticalStackLayout Padding="30"
+                        Spacing="25">
+                        <Label Text="App capability"
+                                Style="{StaticResource SubHeadline}" />
+                        <Button Text="Haptic Feedback"
+                                Clicked="OnNavigateToHapticFeedbackClicked"
+                                HorizontalOptions="Fill" />
+                        <Button Text="Vibration"
+                                Clicked="OnNavigateToVibrationClicked"
+                                HorizontalOptions="Fill" />
 
 
-            <Label Text="Sensors"
-                   Style="{StaticResource SubHeadline}" />
-            <Button Text="Accelerometer"
-                    Clicked="OnNavigateToAccelerometerClicked"
-                    HorizontalOptions="Fill" />
-            <Button Text="Barometer"
-                    Clicked="OnNavigateToBarometerClicked"
-                    HorizontalOptions="Fill" />
-            <Button Text="Compass"
-                    Clicked="OnNavigateToCompassClicked"
-                    HorizontalOptions="Fill" />
-            <Button Text="Gyroscope"
-                    Clicked="OnNavigateToGyroscopeClicked"
-                    HorizontalOptions="Fill" />
-            <Button Text="Magnetometer"
-                    Clicked="OnNavigateToMagnetometerClicked"
-                    HorizontalOptions="Fill" />
-            <Button Text="Orientation Sensor"
-                    Clicked="OnNavigateToOrientationSensorClicked"
-                    HorizontalOptions="Fill" />
-            
-            <Label Text="Graphics / Drawable"
-                   Style="{StaticResource SubHeadline}"/>
-            <Button Text="DrawArc"
-                    Clicked="OnNavigateToDrawArcClicked"
-                    HorizontalOptions="Fill" />
-        </VerticalStackLayout>
-    </ScrollView>
+                        <Label Text="Sensors"
+                                Style="{StaticResource SubHeadline}" />
+                        <Button Text="Accelerometer"
+                                Clicked="OnNavigateToAccelerometerClicked"
+                                HorizontalOptions="Fill" />
+                        <Button Text="Barometer"
+                                Clicked="OnNavigateToBarometerClicked"
+                                HorizontalOptions="Fill" />
+                        <Button Text="Compass"
+                                Clicked="OnNavigateToCompassClicked"
+                                HorizontalOptions="Fill" />
+                        <Button Text="Gyroscope"
+                                Clicked="OnNavigateToGyroscopeClicked"
+                                HorizontalOptions="Fill" />
+                        <Button Text="Magnetometer"
+                                Clicked="OnNavigateToMagnetometerClicked"
+                                HorizontalOptions="Fill" />
+                        <Button Text="Orientation Sensor"
+                                Clicked="OnNavigateToOrientationSensorClicked"
+                                HorizontalOptions="Fill" />
+
+                        <Label Text="Graphics / Drawable"
+                                Style="{StaticResource SubHeadline}" />
+                        <Button Text="DrawArc"
+                                Clicked="OnNavigateToDrawArcClicked"
+                                HorizontalOptions="Fill" />
+                        <Button Text="AppTheme"
+                                Clicked="OnNavigateToAppThemeClicked"
+                                HorizontalOptions="Fill" />
+                </VerticalStackLayout>
+        </ScrollView>
 
 </ContentPage>

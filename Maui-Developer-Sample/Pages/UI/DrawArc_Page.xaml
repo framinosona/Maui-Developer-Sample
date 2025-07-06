@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.UI.Views"
              xmlns:vm="clr-namespace:Maui_Developer_Sample.Pages.UI.ViewModels"
              x:Class="Maui_Developer_Sample.Pages.UI.DrawArc_Page"
-             Title="Draw Arc"
+             Title="DrawArc"
              x:DataType="vm:DrawArc_ViewModel">
     <ContentPage.Content>
         <ScrollView VerticalOptions="Fill"
@@ -18,18 +18,21 @@
                         Minimum="0"
                         Maximum="360"
                         Value="{Binding StartAngle}"
+                        MinimumTrackColor="Green"
                         ThumbColor="Green"
                         HorizontalOptions="Fill" />
                 <Slider x:Name="EndAngleSlider"
                         Minimum="0"
                         Maximum="360"
                         Value="{Binding EndAngle}"
+                        MinimumTrackColor="Red"
                         ThumbColor="Red"
                         HorizontalOptions="Fill" />
                 <Slider x:Name="OffsetAngleSlider"
                         Minimum="-360"
                         Maximum="360"
                         Value="{Binding OffsetAngle}"
+                        MinimumTrackColor="Blue"
                         ThumbColor="Blue"
                         HorizontalOptions="Fill" />
                 <HorizontalStackLayout Spacing="25">

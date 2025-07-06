@@ -21,7 +21,6 @@ public class DrawArcGraphicsView : GraphicsView
         set => SetValue(OffsetAngleProperty, value);
     }
 
-
     public readonly static BindableProperty StartAngleProperty = BindableProperty.Create(nameof(StartAngle),
                                                                                          typeof(float),
                                                                                          typeof(DrawArcGraphicsView),

@@ -56,4 +56,8 @@ public partial class MainPage : ContentPage
         Navigation.PushAsync(MauiProgram.Services?.GetRequiredService<DrawArc_Page>());
     }
 
+    private void OnNavigateToAppThemeClicked(object? sender, EventArgs e)
+    {
+        Navigation.PushAsync(MauiProgram.Services?.GetRequiredService<AppTheme_Page>());
+    }
 }
