@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Maui_Developer_Sample.Pages.Sensors.Services;
 
 /// <summary>
@@ -16,7 +18,7 @@ namespace Maui_Developer_Sample.Pages.Sensors.Services;
 /// </summary>
 public class OrientationSensor_Service : BaseBindableSensor_Service
 {
-    public override bool IsSupported => OrientationSensor.Default.IsSupported;
+    public override bool IsSupported => OrientationSensor.IsSupported;
 
     #region Quaternion Properties (Raw Data)
 
@@ -73,7 +75,7 @@ public class OrientationSensor_Service : BaseBindableSensor_Service
     /// Positive: device tilted forward (top edge down)
     /// Negative: device tilted backward (top edge up)
     /// </summary>
-    public double PitchDegrees
+    public double PitchInDegrees
     {
         get => GetValue(0.0);
         private set => SetValue(value);
@@ -84,7 +86,7 @@ public class OrientationSensor_Service : BaseBindableSensor_Service
     /// Range: -180° to +180° (or 0° to 360°)
     /// 0°: North, 90°: East, 180°: South, 270°: West
     /// </summary>
-    public double YawDegrees
+    public double YawInDegrees
     {
         get => GetValue(0.0);
         private set => SetValue(value);
@@ -96,7 +98,7 @@ public class OrientationSensor_Service : BaseBindableSensor_Service
     /// Positive: device tilted to the left
     /// Negative: device tilted to the right
     /// </summary>
-    public double RollDegrees
+    public double RollInDegrees
     {
         get => GetValue(0.0);
         private set => SetValue(value);
@@ -128,27 +130,28 @@ public class OrientationSensor_Service : BaseBindableSensor_Service
 
     protected override bool IsSensorMonitoring()
     {
-        return OrientationSensor.Default.IsMonitoring;
+        return OrientationSensor.IsMonitoring;
     }
 
     protected override void SubscribeToSensorEvents()
     {
-        OrientationSensor.Default.ReadingChanged += OnReadingChanged;
+        OrientationSensor.ReadingChanged += OnReadingChanged;
     }
 
     protected override void UnsubscribeFromSensorEvents()
     {
-        OrientationSensor.Default.ReadingChanged -= OnReadingChanged;
+        OrientationSensor.ReadingChanged -= OnReadingChanged;
     }
 
-    protected override void StartSensor()
+    protected override void StartSensor(SensorSpeed sensorSpeed)
     {
-        OrientationSensor.Default.Start(SensorSpeed);
+        OrientationSensor.Start(sensorSpeed);
+        Debug.WriteLine($"{this} started monitoring. Speed: {sensorSpeed}");
     }
 
     protected override void StopSensor()
     {
-        OrientationSensor.Default.Stop();
+        OrientationSensor.Stop();
     }
 
     public override string ToString()
@@ -169,6 +172,8 @@ public class OrientationSensor_Service : BaseBindableSensor_Service
             // Convert to human-readable values
             UpdateEulerAngles();
         });
+        Debug.WriteLine($"OrientationSensor reading: W={W}, X={X}, Y={Y}, Z={Z}, " +
+                        $"Pitch={PitchInDegrees}°, Yaw={YawInDegrees}°, Roll={RollInDegrees}°");
     }
 
     #region Quaternion to Euler Conversion Methods
@@ -181,12 +186,12 @@ public class OrientationSensor_Service : BaseBindableSensor_Service
         // Convert quaternion to Euler angles using standard formulas
         var (pitch, yaw, roll) = QuaternionToEulerAngles(W, X, Y, Z);
 
-        PitchDegrees = RadiansToDegrees(pitch);
-        YawDegrees = RadiansToDegrees(yaw);
-        RollDegrees = RadiansToDegrees(roll);
+        PitchInDegrees = RadiansToDegrees(pitch);
+        YawInDegrees = RadiansToDegrees(yaw);
+        RollInDegrees = RadiansToDegrees(roll);
 
         // Normalize to 0-360 range
-        //var normalized = ((YawDegrees % 360) + 360) % 360;
+        //var normalized = ((YawInDegrees % 360) + 360) % 360;
     }
 
     /// <summary>

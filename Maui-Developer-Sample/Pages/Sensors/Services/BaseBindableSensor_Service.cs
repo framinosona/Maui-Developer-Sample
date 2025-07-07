@@ -26,6 +26,8 @@ public abstract class BaseBindableSensor_Service : BaseBindableAppCapability_Ser
         Status = $"{this} is not started";
     }
 
+    protected virtual SensorSpeed DefaultSensorSpeed => SensorSpeed.UI;
+
     /// <summary>
     /// Gets or sets the sensor reading frequency/speed.
     /// When changed while monitoring, the sensor is automatically restarted with the new speed.
@@ -38,7 +40,7 @@ public abstract class BaseBindableSensor_Service : BaseBindableAppCapability_Ser
     /// </value>
     public SensorSpeed SensorSpeed
     {
-        get => GetValue(SensorSpeed.UI);
+        get => GetValue(DefaultSensorSpeed);
         set
         {
             if (SetValue(value))
@@ -46,7 +48,7 @@ public abstract class BaseBindableSensor_Service : BaseBindableAppCapability_Ser
                 if (IsMonitoring)
                 {
                     StopIfNeeded();
-                    StartIfNeeded();
+                    StartIfNeeded(value);
                 }
             }
         }
@@ -92,7 +94,7 @@ public abstract class BaseBindableSensor_Service : BaseBindableAppCapability_Ser
         protected set => SetValue(value);
     }
 
-    private void StartIfNeeded()
+    protected void StartIfNeeded(SensorSpeed sensorSpeed = default)
     {
         if (IsSensorMonitoring())
             return;
@@ -104,7 +106,7 @@ public abstract class BaseBindableSensor_Service : BaseBindableAppCapability_Ser
 
             UnsubscribeFromSensorEvents(); // Ensure no previous subscriptions are active
             SubscribeToSensorEvents();
-            StartSensor();
+            StartSensor(sensorSpeed == default ? SensorSpeed : sensorSpeed);
             Status = $"{this} is on";
             IsMonitoring = true;
         }
@@ -133,7 +135,7 @@ public abstract class BaseBindableSensor_Service : BaseBindableAppCapability_Ser
 
     protected abstract bool IsSensorMonitoring();
 
-    protected abstract void StartSensor();
+    protected abstract void StartSensor(SensorSpeed sensorSpeed = default);
 
     protected abstract void StopSensor();
 

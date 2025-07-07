@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Maui_Developer_Sample.Pages.Sensors.Barometer_Page"
-             Title="{Binding .}"
-             x:DataType="sensors:Barometer_Service">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
+    xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="Maui_Developer_Sample.Pages.Sensors.Barometer_Page"
+    Title="{Binding .}"
+    x:DataType="sensors:Barometer_Service">
     <ContentPage.Resources>
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </ContentPage.Resources>
     <ContentPage.Content>
 
         <ScrollView VerticalOptions="Fill"
-                    HorizontalOptions="Fill">
+            HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
-                                 Spacing="25">
+                Spacing="25">
                 <Grid ColumnDefinitions="Auto, 1*"
-                      ColumnSpacing="12">
+                    ColumnSpacing="12">
                     <Switch Grid.Column="0"
-                            IsToggled="{Binding IsMonitoring}"
-                            IsEnabled="{Binding IsSupported}" />
+                        IsToggled="{Binding IsMonitoring}"
+                        IsEnabled="{Binding IsSupported}" />
                     <Label Grid.Column="1"
-                           Text="{Binding Status}"
-                           Style="{StaticResource StatusLabel}" />
+                        Text="{Binding Status}"
+                        Style="{StaticResource StatusLabel}" />
                 </Grid>
                 <Label Text="Not available on this device"
-                       Style="{StaticResource StatusLabel}"
-                       TextColor="Red"
-                       IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
+                    Style="{StaticResource StatusLabel}"
+                    TextColor="Red"
+                    IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
 
                 <Label Text="Raw Barometer Values:"
-                       FontAttributes="Bold" />
+                    FontAttributes="Bold" />
                 <Label Text="{Binding PressureInHectopascals, StringFormat='Pressure: {0:F2}hPa'}" />
                 <Label Text="Note : typically from 950hPa to 1050hPa at sea level" />
 
                 <views:MonodirectionalIndicator Orientation="Vertical"
-                                                Value="{Binding PressureInHectopascals}"
-                                                MinValue="950"
-                                                MaxValue="1050"
-                                                HeightRequest="300"
-                                                WidthRequest="300"
-                                                HorizontalOptions="Center" />
+                    Value="{Binding PressureInHectopascals}"
+                    MinValue="950"
+                    MaxValue="1050"
+                    HeightRequest="300"
+                    WidthRequest="300"
+                    HorizontalOptions="Center" />
             </VerticalStackLayout>
         </ScrollView>
 

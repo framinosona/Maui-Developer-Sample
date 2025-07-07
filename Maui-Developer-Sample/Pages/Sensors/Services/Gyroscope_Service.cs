@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Maui_Developer_Sample.Pages.Sensors.Services;
 
 /// <summary>
@@ -28,7 +30,7 @@ namespace Maui_Developer_Sample.Pages.Sensors.Services;
 /// </remarks>
 public class Gyroscope_Service : BaseBindableSensor_Service
 {
-    public override bool IsSupported => Gyroscope.Default.IsSupported;
+    public override bool IsSupported => Gyroscope.IsSupported;
 
     /// <summary>
     /// Angular velocity around the X-axis in radians per second.
@@ -100,7 +102,7 @@ public class Gyroscope_Service : BaseBindableSensor_Service
     ///
     /// Reference: 90°/s = quarter turn per second
     /// </value>
-    public double XDegrees
+    public float XDegrees
     {
         get => GetValue(0.0f);
         protected set => SetValue(value);
@@ -119,7 +121,7 @@ public class Gyroscope_Service : BaseBindableSensor_Service
     ///
     /// Reference: 90°/s = quarter turn per second
     /// </value>
-    public double YDegrees
+    public float YDegrees
     {
         get => GetValue(0.0f);
         protected set => SetValue(value);
@@ -138,7 +140,7 @@ public class Gyroscope_Service : BaseBindableSensor_Service
     ///
     /// Reference: 90°/s = quarter turn per second
     /// </value>
-    public double ZDegrees
+    public float ZDegrees
     {
         get => GetValue(0.0f);
         protected set => SetValue(value);
@@ -146,27 +148,28 @@ public class Gyroscope_Service : BaseBindableSensor_Service
 
     protected override bool IsSensorMonitoring()
     {
-        return Gyroscope.Default.IsMonitoring;
+        return Gyroscope.IsMonitoring;
     }
 
     protected override void SubscribeToSensorEvents()
     {
-        Gyroscope.Default.ReadingChanged += OnReadingChanged;
+        Gyroscope.ReadingChanged += OnReadingChanged;
     }
 
     protected override void UnsubscribeFromSensorEvents()
     {
-        Gyroscope.Default.ReadingChanged -= OnReadingChanged;
+        Gyroscope.ReadingChanged -= OnReadingChanged;
     }
 
-    protected override void StartSensor()
+    protected override void StartSensor(SensorSpeed sensorSpeed)
     {
-        Gyroscope.Default.Start(SensorSpeed);
+        Gyroscope.Start(sensorSpeed);
+        Debug.WriteLine($"{this} started monitoring. Speed: {sensorSpeed}");
     }
 
     protected override void StopSensor()
     {
-        Gyroscope.Default.Stop();
+        Gyroscope.Stop();
     }
 
     public override string ToString()
@@ -179,12 +182,15 @@ public class Gyroscope_Service : BaseBindableSensor_Service
         MainThread.BeginInvokeOnMainThread(() =>
         {
             XRadians = e.Reading.AngularVelocity.X;
-            XDegrees = RadianToDegree(e.Reading.AngularVelocity.X);
+            XDegrees = (float)RadianToDegree(e.Reading.AngularVelocity.X);
             YRadians = e.Reading.AngularVelocity.Y;
-            YDegrees = RadianToDegree(e.Reading.AngularVelocity.Y);
+            YDegrees = (float)RadianToDegree(e.Reading.AngularVelocity.Y);
             ZRadians = e.Reading.AngularVelocity.Z;
-            ZDegrees = RadianToDegree(e.Reading.AngularVelocity.Z);
+            ZDegrees = (float)RadianToDegree(e.Reading.AngularVelocity.Z);
         });
+        Debug.WriteLine($"Gyroscope reading: X={XRadians} rad/s ({XDegrees}°/s), " +
+                        $"Y={YRadians} rad/s ({YDegrees}°/s), " +
+                        $"Z={ZRadians} rad/s ({ZDegrees}°/s)");
     }
 
     /// <summary>

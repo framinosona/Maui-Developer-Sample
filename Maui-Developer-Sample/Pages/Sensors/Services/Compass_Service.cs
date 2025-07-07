@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Maui_Developer_Sample.Pages.Sensors.Services;
 
 /// <summary>
@@ -26,7 +28,7 @@ namespace Maui_Developer_Sample.Pages.Sensors.Services;
 /// </remarks>
 public class Compass_Service : BaseBindableSensor_Service
 {
-    public override bool IsSupported => Compass.Default.IsSupported;
+    public override bool IsSupported => Compass.IsSupported;
 
     /// <summary>
     /// Current heading relative to magnetic north in degrees.
@@ -78,27 +80,28 @@ public class Compass_Service : BaseBindableSensor_Service
 
     protected override bool IsSensorMonitoring()
     {
-        return Compass.Default.IsMonitoring;
+        return Compass.IsMonitoring;
     }
 
     protected override void SubscribeToSensorEvents()
     {
-        Compass.Default.ReadingChanged += OnReadingChanged;
+        Compass.ReadingChanged += OnReadingChanged;
     }
 
     protected override void UnsubscribeFromSensorEvents()
     {
-        Compass.Default.ReadingChanged -= OnReadingChanged;
+        Compass.ReadingChanged -= OnReadingChanged;
     }
 
-    protected override void StartSensor()
+    protected override void StartSensor(SensorSpeed sensorSpeed)
     {
-        Compass.Default.Start(SensorSpeed);
+        Compass.Start(sensorSpeed);
+        Debug.WriteLine($"{this} started monitoring. Speed: {sensorSpeed}");
     }
 
     protected override void StopSensor()
     {
-        Compass.Default.Stop();
+        Compass.Stop();
     }
 
     public override string ToString()
@@ -116,8 +119,11 @@ public class Compass_Service : BaseBindableSensor_Service
             delta -= 360;
         else if (delta < -180)
             delta += 360;
-
-        HeadingInDegrees = newHeading;
-        HeadingInDegreesDelta = delta;
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            HeadingInDegrees = newHeading;
+            HeadingInDegreesDelta = delta;
+        });
+        Debug.WriteLine($"Compass reading: Heading={HeadingInDegrees}° Delta={HeadingInDegreesDelta}°");
     }
 }

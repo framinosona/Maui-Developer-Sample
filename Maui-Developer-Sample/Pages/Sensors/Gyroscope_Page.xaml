@@ -1,140 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Maui_Developer_Sample.Pages.Sensors.Gyroscope_Page"
-             Title="{Binding .}"
-             x:DataType="sensors:Gyroscope_Service">
-    <ContentPage.Resources>
-        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
-    </ContentPage.Resources>
-    <ContentPage.Content>
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
+       xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
+       xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+       x:Class="Maui_Developer_Sample.Pages.Sensors.Gyroscope_Page"
+       Title="{Binding .}"
+       x:DataType="sensors:Gyroscope_Service">
+       <ContentPage.Resources>
+              <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+       </ContentPage.Resources>
+       <ContentPage.Content>
 
-        <ScrollView VerticalOptions="Fill"
-                    HorizontalOptions="Fill">
-            <VerticalStackLayout Padding="30"
-                                 Spacing="25">
-                <Grid ColumnDefinitions="Auto, 1*"
-                      ColumnSpacing="12">
-                    <Switch Grid.Column="0"
-                            IsToggled="{Binding IsMonitoring}"
-                            IsEnabled="{Binding IsSupported}" />
-                    <Label Grid.Column="1"
-                           Text="{Binding Status}"
-                           Style="{StaticResource StatusLabel}" />
-                </Grid>
-                <Label Text="Not available on this device"
-                       Style="{StaticResource StatusLabel}"
-                       TextColor="Red"
-                       IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
+              <ScrollView VerticalOptions="Fill"
+                     HorizontalOptions="Fill">
+                     <VerticalStackLayout Padding="30"
+                            Spacing="25">
+                            <Grid ColumnDefinitions="Auto, 1*"
+                                   ColumnSpacing="12">
+                                   <Switch Grid.Column="0"
+                                          IsToggled="{Binding IsMonitoring}"
+                                          IsEnabled="{Binding IsSupported}" />
+                                   <Label Grid.Column="1"
+                                          Text="{Binding Status}"
+                                          Style="{StaticResource StatusLabel}" />
+                            </Grid>
+                            <Label Text="Not available on this device"
+                                   Style="{StaticResource StatusLabel}"
+                                   TextColor="Red"
+                                   IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
 
-                <Label Text="Raw Gyroscope Values:"
-                       FontAttributes="Bold" />
-                <Grid ColumnDefinitions="1*, 1*, 1*, 1*"
-                      RowDefinitions="1*, 1*, 1*"
-                      WidthRequest="300"
-                      ColumnSpacing="2"
-                      HorizontalOptions="Center">
+                            <Label Text="Raw Gyroscope Values:"
+                                   FontAttributes="Bold" />
+                            <Grid ColumnDefinitions="1*, 1*, 1*, 1*"
+                                   RowDefinitions="1*, 1*, 1*"
+                                   WidthRequest="300"
+                                   ColumnSpacing="2"
+                                   HorizontalOptions="Center">
 
-                    <Label Grid.Row="0"
-                           Grid.Column="1"
-                           Text="X"
-                           HorizontalOptions="Center" />
-                    <Label Grid.Row="0"
-                           Grid.Column="2"
-                           Text="Y"
-                           HorizontalOptions="Center" />
-                    <Label Grid.Row="0"
-                           Grid.Column="3"
-                           Text="Z"
-                           HorizontalOptions="Center" />
+                                   <Label Grid.Row="0"
+                                          Grid.Column="1"
+                                          Text="X - Roll"
+                                          HorizontalOptions="Center" />
+                                   <Label Grid.Row="0"
+                                          Grid.Column="2"
+                                          Text="Y - Pitch"
+                                          HorizontalOptions="Center" />
+                                   <Label Grid.Row="0"
+                                          Grid.Column="3"
+                                          Text="Z - Yaw"
+                                          HorizontalOptions="Center" />
 
-                    <Label Grid.Row="1"
-                           Grid.Column="0"
-                           Text="Rad/s" />
-                    <Label Grid.Row="1"
-                           Grid.Column="1"
-                           Text="{Binding XRadians, StringFormat='{0:F1}'}" />
-                    <Label Grid.Row="1"
-                           Grid.Column="2"
-                           Text="{Binding YRadians, StringFormat='{0:F1}'}" />
-                    <Label Grid.Row="2"
-                           Grid.Column="3"
-                           Text="{Binding ZRadians, StringFormat='{0:F1}'}" />
+                                   <Label Grid.Row="1"
+                                          Grid.Column="0"
+                                          Text="Rad/s" />
+                                   <Label Grid.Row="1"
+                                          Grid.Column="1"
+                                          Text="{Binding XRadians, StringFormat='{0:F1}'}"
+                                          HorizontalOptions="Center" />
+                                   <Label Grid.Row="1"
+                                          Grid.Column="2"
+                                          Text="{Binding YRadians, StringFormat='{0:F1}'}"
+                                          HorizontalOptions="Center" />
+                                   <Label Grid.Row="1"
+                                          Grid.Column="3"
+                                          Text="{Binding ZRadians, StringFormat='{0:F1}'}"
+                                          HorizontalOptions="Center" />
 
-                    <Label Grid.Row="2"
-                           Grid.Column="0"
-                           Text="Deg/s" />
-                    <Label Grid.Row="2"
-                           Grid.Column="1"
-                           Text="{Binding XDegrees, StringFormat='{0:F0}'}" />
-                    <Label Grid.Row="2"
-                           Grid.Column="2"
-                           Text="{Binding YDegrees, StringFormat='{0:F0}'}" />
-                    <Label Grid.Row="2"
-                           Grid.Column="3"
-                           Text="{Binding ZDegrees, StringFormat='{0:F0}'}" />
-                </Grid>
+                                   <Label Grid.Row="2"
+                                          Grid.Column="0"
+                                          Text="Deg/s" />
+                                   <Label Grid.Row="2"
+                                          Grid.Column="1"
+                                          Text="{Binding XDegrees, StringFormat='{0:F0}'}"
+                                          HorizontalOptions="Center" />
+                                   <Label Grid.Row="2"
+                                          Grid.Column="2"
+                                          Text="{Binding YDegrees, StringFormat='{0:F0}'}"
+                                          HorizontalOptions="Center" />
+                                   <Label Grid.Row="2"
+                                          Grid.Column="3"
+                                          Text="{Binding ZDegrees, StringFormat='{0:F0}'}"
+                                          HorizontalOptions="Center" />
+                            </Grid>
 
-                <Grid HeightRequest="300"
-                      WidthRequest="300"
-                      ColumnDefinitions="11*, 1*"
-                      RowDefinitions="11*, 1*"
-                      ColumnSpacing="2"
-                      RowSpacing="2"
-                      HorizontalOptions="Center">
-                    <views:RotationIndicator Grid.Column="0"
-                                             Grid.Row="0"
-                                             Value="{Binding ZDegrees}"
-                                             MaxValue="360"
-                                             MinValue="-360" />
-                    <views:BidirectionalIndicator Grid.Column="1"
-                                                  Grid.Row="0"
-                                                  Orientation="Vertical"
-                                                  Value="{Binding XDegrees }"
-                                                  MaxValue="180"
-                                                  MinValue="-180" />
-                    <views:BidirectionalIndicator Grid.Column="0"
-                                                  Grid.Row="1"
-                                                  Orientation="Horizontal"
-                                                  Value="{Binding YDegrees }"
-                                                  MaxValue="180"
-                                                  MinValue="-180" />
-                </Grid>
-                <Grid HeightRequest="100"
-                      ColumnDefinitions="1*,1*,1*"
-                      WidthRequest="300"
-                      ColumnSpacing="2"
-                      HorizontalOptions="Center">
-                    <views:RawValueImageView Grid.Column="0"
-                                             Value="{Binding XDegrees}"
-                                             MaxValue="180"
-                                             MinValue="-180"
-                                             BackgroundColor="LightGray"
-                                             PositiveImageSource="rotation_x_arrow_pos"
-                                             NegativeImageSource="rotation_x_arrow_neg"
-                                             NeutralImageSource="rotation_x_empty" />
-                    <views:RawValueImageView Grid.Column="1"
-                                             Value="{Binding YDegrees}"
-                                             MaxValue="180"
-                                             MinValue="-180"
-                                             BackgroundColor="LightGray"
-                                             PositiveImageSource="rotation_y_arrow_pos"
-                                             NegativeImageSource="rotation_y_arrow_neg"
-                                             NeutralImageSource="rotation_y_empty" />
-                    <views:RawValueImageView Grid.Column="2"
-                                             Value="{Binding ZDegrees}"
-                                             MaxValue="360"
-                                             MinValue="-360"
-                                             BackgroundColor="LightGray"
-                                             PositiveImageSource="rotation_z_arrow_pos"
-                                             NegativeImageSource="rotation_z_arrow_neg"
-                                             NeutralImageSource="rotation_z_empty" />
-                </Grid>
-            </VerticalStackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+                            <Grid HeightRequest="300"
+                                   WidthRequest="300"
+                                   ColumnDefinitions="11*, 1*"
+                                   RowDefinitions="11*, 1*"
+                                   ColumnSpacing="2"
+                                   RowSpacing="2"
+                                   HorizontalOptions="Center">
+                                   <views:RotationIndicator Grid.Column="0"
+                                          Grid.Row="0"
+                                          Value="{Binding ZDegrees}"
+                                          MaxValue="360"
+                                          MinValue="-360" />
+                                   <views:BidirectionalIndicator Grid.Column="1"
+                                          Grid.Row="0"
+                                          Orientation="Vertical"
+                                          Value="{Binding XDegrees }"
+                                          MaxValue="180"
+                                          MinValue="-180" />
+                                   <views:BidirectionalIndicator Grid.Column="0"
+                                          Grid.Row="1"
+                                          Orientation="Horizontal"
+                                          Value="{Binding YDegrees }"
+                                          MaxValue="180"
+                                          MinValue="-180" />
+                            </Grid>
+                            <Grid HeightRequest="100"
+                                   ColumnDefinitions="1*,1*,1*"
+                                   WidthRequest="300"
+                                   ColumnSpacing="2"
+                                   HorizontalOptions="Center">
+                                   <views:RawValueImageView Grid.Column="0"
+                                          Value="{Binding XDegrees}"
+                                          MaxValue="180"
+                                          MinValue="-180"
+                                          BackgroundColor="LightGray"
+                                          PositiveImageSource="rotation_x_arrow_pos"
+                                          NegativeImageSource="rotation_x_arrow_neg"
+                                          NeutralImageSource="rotation_x_empty" />
+                                   <views:RawValueImageView Grid.Column="1"
+                                          Value="{Binding YDegrees}"
+                                          MaxValue="180"
+                                          MinValue="-180"
+                                          BackgroundColor="LightGray"
+                                          PositiveImageSource="rotation_y_arrow_pos"
+                                          NegativeImageSource="rotation_y_arrow_neg"
+                                          NeutralImageSource="rotation_y_empty" />
+                                   <views:RawValueImageView Grid.Column="2"
+                                          Value="{Binding ZDegrees}"
+                                          MaxValue="360"
+                                          MinValue="-360"
+                                          BackgroundColor="LightGray"
+                                          PositiveImageSource="rotation_z_arrow_pos"
+                                          NegativeImageSource="rotation_z_arrow_neg"
+                                          NeutralImageSource="rotation_z_empty" />
+                            </Grid>
+                     </VerticalStackLayout>
+              </ScrollView>
+       </ContentPage.Content>
 </ContentPage>

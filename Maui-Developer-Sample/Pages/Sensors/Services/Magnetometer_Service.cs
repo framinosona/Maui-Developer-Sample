@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace Maui_Developer_Sample.Pages.Sensors.Services;
 
 /// <summary>
@@ -31,7 +33,7 @@ namespace Maui_Developer_Sample.Pages.Sensors.Services;
 /// </remarks>
 public class Magnetometer_Service : BaseBindableSensor_Service
 {
-    public override bool IsSupported => Magnetometer.Default.IsSupported;
+    public override bool IsSupported => Magnetometer.IsSupported;
 
     /// <summary>
     /// Magnetic field strength along the X-axis in microtesla (μT).
@@ -98,27 +100,28 @@ public class Magnetometer_Service : BaseBindableSensor_Service
 
     protected override bool IsSensorMonitoring()
     {
-        return Magnetometer.Default.IsMonitoring;
+        return Magnetometer.IsMonitoring;
     }
 
     protected override void SubscribeToSensorEvents()
     {
-        Magnetometer.Default.ReadingChanged += OnReadingChanged;
+        Magnetometer.ReadingChanged += OnReadingChanged;
     }
 
     protected override void UnsubscribeFromSensorEvents()
     {
-        Magnetometer.Default.ReadingChanged -= OnReadingChanged;
+        Magnetometer.ReadingChanged -= OnReadingChanged;
     }
 
-    protected override void StartSensor()
+    protected override void StartSensor(SensorSpeed sensorSpeed)
     {
-        Magnetometer.Default.Start(SensorSpeed);
+        Magnetometer.Start(sensorSpeed);
+        Debug.WriteLine($"{this} started monitoring. Speed: {sensorSpeed}");
     }
 
     protected override void StopSensor()
     {
-        Magnetometer.Default.Stop();
+        Magnetometer.Stop();
     }
 
     public override string ToString()
@@ -134,5 +137,6 @@ public class Magnetometer_Service : BaseBindableSensor_Service
             YInMicroTesla = e.Reading.MagneticField.Y;
             ZInMicroTesla = e.Reading.MagneticField.Z;
         });
+        Debug.WriteLine($"Magnetometer reading: X={XInMicroTesla} μT, Y={YInMicroTesla} μT, Z={ZInMicroTesla} μT");
     }
 }

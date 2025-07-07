@@ -1,78 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Maui_Developer_Sample.Pages.Sensors.OrientationSensor_Page"
-             Title="{Binding .}"
-             x:DataType="sensors:OrientationSensor_Service">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
+    xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="Maui_Developer_Sample.Pages.Sensors.OrientationSensor_Page"
+    Title="{Binding .}"
+    x:DataType="sensors:OrientationSensor_Service">
     <ContentPage.Resources>
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </ContentPage.Resources>
     <ContentPage.Content>
 
         <ScrollView VerticalOptions="Fill"
-                    HorizontalOptions="Fill">
+            HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
-                                 Spacing="25">
+                Spacing="25">
                 <Grid ColumnDefinitions="Auto, 1*"
-                      ColumnSpacing="12">
+                    ColumnSpacing="12">
                     <Switch Grid.Column="0"
-                            IsToggled="{Binding IsMonitoring}"
-                            IsEnabled="{Binding IsSupported}" />
+                        IsToggled="{Binding IsMonitoring}"
+                        IsEnabled="{Binding IsSupported}" />
                     <Label Grid.Column="1"
-                           Text="{Binding Status}"
-                           Style="{StaticResource StatusLabel}" />
+                        Text="{Binding Status}"
+                        Style="{StaticResource StatusLabel}" />
                 </Grid>
                 <Label Text="Not available on this device"
-                       Style="{StaticResource StatusLabel}"
-                       TextColor="Red"
-                       IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
+                    Style="{StaticResource StatusLabel}"
+                    TextColor="Red"
+                    IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
 
                 <Label Text="Raw Orientation Sensor Values:"
-                       FontAttributes="Bold" />
+                    FontAttributes="Bold" />
                 <Grid ColumnDefinitions="1*, 1*, 1*, 1*"
-                      WidthRequest="300"
-                      ColumnSpacing="2"
-                      HorizontalOptions="Center">
+                    WidthRequest="300"
+                    ColumnSpacing="2"
+                    HorizontalOptions="Center">
                     <views:RawValueLabel Grid.Column="0"
-                                         Value="{Binding X}"
-                                         Format="X: {0:F2}"
-                                         HorizontalOptions="Center" />
+                        Value="{Binding X}"
+                        Format="X: {0:F2}"
+                        HorizontalOptions="Center" />
                     <views:RawValueLabel Grid.Column="1"
-                                         Value="{Binding Y}"
-                                         Format="Y: {0:F2}"
-                                         HorizontalOptions="Center" />
+                        Value="{Binding Y}"
+                        Format="Y: {0:F2}"
+                        HorizontalOptions="Center" />
                     <views:RawValueLabel Grid.Column="2"
-                                         Value="{Binding Z}"
-                                         Format="Z: {0:F2}"
-                                         HorizontalOptions="Center" />
+                        Value="{Binding Z}"
+                        Format="Z: {0:F2}"
+                        HorizontalOptions="Center" />
                     <views:RawValueLabel Grid.Column="3"
-                                         Value="{Binding W}"
-                                         Format="W: {0:F2}"
-                                         HorizontalOptions="Center" />
+                        Value="{Binding W}"
+                        Format="W: {0:F2}"
+                        HorizontalOptions="Center" />
                 </Grid>
 
-                <Grid HeightRequest="300"
-                      ColumnDefinitions="1*,1*,1*,1*"
-                      WidthRequest="300"
-                      HorizontalOptions="Center"
-                      ColumnSpacing="2">
+                <Grid HeightRequest="150"
+                    ColumnDefinitions="1*,1*,1*,1*"
+                    WidthRequest="300"
+                    HorizontalOptions="Center"
+                    ColumnSpacing="2">
                     <views:BidirectionalIndicator Grid.Column="0"
-                                                  Orientation="Vertical"
-                                                  Value="{Binding X}" />
+                        Orientation="Vertical"
+                        Value="{Binding X}" />
                     <views:BidirectionalIndicator Grid.Column="1"
-                                                  Orientation="Vertical"
-                                                  Value="{Binding Y}" />
+                        Orientation="Vertical"
+                        Value="{Binding Y}" />
                     <views:BidirectionalIndicator Grid.Column="2"
-                                                  Orientation="Vertical"
-                                                  Value="{Binding Z}" />
+                        Orientation="Vertical"
+                        Value="{Binding Z}" />
                     <views:BidirectionalIndicator Grid.Column="3"
-                                                  Orientation="Vertical"
-                                                  Value="{Binding W}" />
+                        Orientation="Vertical"
+                        Value="{Binding W}" />
                 </Grid>
+                <Grid ColumnDefinitions="1*, 1*, 1*, 1*"
+                    RowDefinitions="1*, 1*, 1*"
+                    WidthRequest="300"
+                    ColumnSpacing="2"
+                    HorizontalOptions="Center">
+
+                    <Label Grid.Row="0"
+                        Grid.Column="1"
+                        Text="X - Roll"
+                        HorizontalOptions="Center" />
+                    <Label Grid.Row="0"
+                        Grid.Column="2"
+                        Text="Y - Pitch"
+                        HorizontalOptions="Center" />
+                    <Label Grid.Row="0"
+                        Grid.Column="3"
+                        Text="Z - Yaw"
+                        HorizontalOptions="Center" />
+
+                    <Label Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Deg" />
+                    <Label Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{Binding RollInDegrees, StringFormat='{0:F0}'}"
+                        HorizontalOptions="Center" />
+                    <Label Grid.Row="1"
+                        Grid.Column="2"
+                        Text="{Binding PitchInDegrees, StringFormat='{0:F0}'}"
+                        HorizontalOptions="Center" />
+                    <Label Grid.Row="1"
+                        Grid.Column="3"
+                        Text="{Binding YawInDegrees, StringFormat='{0:F0}'}"
+                        HorizontalOptions="Center" />
+                </Grid>
+
+                <!-- Always pointing north and parallel to earth -->
+                <Image Source="compass"
+                    WidthRequest="200"
+                    HeightRequest="200"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    RotationX="{Binding PitchInDegrees}"
+                    RotationY="{Binding YawInDegrees}"
+                    Rotation="{Binding RollInDegrees}" />
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
