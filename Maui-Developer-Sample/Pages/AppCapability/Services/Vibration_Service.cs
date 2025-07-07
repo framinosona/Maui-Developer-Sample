@@ -11,9 +11,9 @@ public class Vibration_Service : BaseBindableAppCapability_Service
 
     public override bool IsSupported => Vibration.Default.IsSupported;
 
-    private void Vibrate() => Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(DurationInMs));
+    private void Vibrate() => Vibration.Vibrate(TimeSpan.FromMilliseconds(DurationInMs));
 
-    private void Cancel() => Vibration.Default.Cancel();
+    private void Cancel() => Vibration.Cancel();
 
     public double DurationInMs
     {
