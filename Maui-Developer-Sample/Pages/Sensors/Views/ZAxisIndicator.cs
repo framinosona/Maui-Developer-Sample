@@ -55,20 +55,18 @@ public class ZAxisIndicator : BaseIndicator
 
         public void DrawValue(float value, ICanvas canvas, RectF dirtyRect)
         {
-            var x = dirtyRect.X + dirtyRect.Width / 2 * (1 - value);
-            var y = dirtyRect.Y + dirtyRect.Height / 2 * (1 - value);
-            var width = dirtyRect.Width * value;
-            var height = dirtyRect.Height * value;
-            canvas.FillRectangle(x, y, width, height);
+            var x = dirtyRect.X + dirtyRect.Width / 2;
+            var y = dirtyRect.Y + dirtyRect.Height / 2;
+            var radius = Math.Min(dirtyRect.Width, dirtyRect.Height) / 2 * value;
+            canvas.FillCircle(x, y, radius);
         }
 
         public void DrawZeroValue(ICanvas canvas, RectF dirtyRect)
         {
-            var x = dirtyRect.X + dirtyRect.Width / 2 * (1 - _parent.Tolerance);
-            var y = dirtyRect.Y + dirtyRect.Height / 2 * (1 - _parent.Tolerance);
-            var width = dirtyRect.Width * _parent.Tolerance;
-            var height = dirtyRect.Height * _parent.Tolerance;
-            canvas.FillRectangle(x, y, width, height);
+            var x = dirtyRect.X + dirtyRect.Width / 2;
+            var y = dirtyRect.Y + dirtyRect.Height / 2;
+            var radius = Math.Min(dirtyRect.Width, dirtyRect.Height) / 2 * _parent.Tolerance;
+            canvas.FillCircle(x, y, radius);
         }
     }
 
