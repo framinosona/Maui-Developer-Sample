@@ -9,4 +9,12 @@ public partial class Barometer_Page : ContentPage
         InitializeComponent();
         BindingContext = barometerService;
     }
+    protected override void OnDisappearing()
+    {
+        if (BindingContext is BaseBindableSensor_Service sensorService)
+        {
+            sensorService.IsMonitoring = false;
+        }
+        base.OnDisappearing();
+    }
 }

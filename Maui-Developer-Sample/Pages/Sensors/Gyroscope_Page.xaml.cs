@@ -9,4 +9,13 @@ public partial class Gyroscope_Page : ContentPage
         InitializeComponent();
         BindingContext = gyroscopeService;
     }
+
+    protected override void OnDisappearing()
+    {
+        if (BindingContext is BaseBindableSensor_Service sensorService)
+        {
+            sensorService.IsMonitoring = false;
+        }
+        base.OnDisappearing();
+    }
 }

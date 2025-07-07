@@ -9,4 +9,13 @@ public partial class Magnetometer_Page : ContentPage
         InitializeComponent();
         BindingContext = magnetometerService;
     }
+
+    protected override void OnDisappearing()
+    {
+        if (BindingContext is BaseBindableSensor_Service sensorService)
+        {
+            sensorService.IsMonitoring = false;
+        }
+        base.OnDisappearing();
+    }
 }

@@ -9,4 +9,12 @@ public partial class Compass_Page
         InitializeComponent();
         BindingContext = compassService;
     }
+    protected override void OnDisappearing()
+    {
+        if (BindingContext is BaseBindableSensor_Service sensorService)
+        {
+            sensorService.IsMonitoring = false;
+        }
+        base.OnDisappearing();
+    }
 }

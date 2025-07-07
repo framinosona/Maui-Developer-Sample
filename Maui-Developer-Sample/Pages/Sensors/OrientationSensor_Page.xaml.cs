@@ -9,4 +9,13 @@ public partial class OrientationSensor_Page : ContentPage
         InitializeComponent();
         BindingContext = orientationSensorService;
     }
+
+    protected override void OnDisappearing()
+    {
+        if (BindingContext is BaseBindableSensor_Service sensorService)
+        {
+            sensorService.IsMonitoring = false;
+        }
+        base.OnDisappearing();
+    }
 }

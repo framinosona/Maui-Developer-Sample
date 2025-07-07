@@ -9,4 +9,13 @@ public partial class Accelerometer_Page : ContentPage
         InitializeComponent();
         BindingContext = accelerometerService;
     }
+
+    protected override void OnDisappearing()
+    {
+        if (BindingContext is BaseBindableSensor_Service sensorService)
+        {
+            sensorService.IsMonitoring = false;
+        }
+        base.OnDisappearing();
+    }
 }
