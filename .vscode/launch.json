@@ -1,0 +1,60 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET MAUI (Generic)",
+      "type": "maui",
+      "request": "launch",
+      "preLaunchTask": "maui: Build",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": ".NET MAUI (iPhone)",
+      "type": "maui",
+      "request": "launch",
+      "preLaunchTask": "maui: Build",
+      "targetFramework": "net9.0-ios",
+      "configuration": "Debug",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": ".NET MAUI (iPhone Simulator)",
+      "type": "maui",
+      "request": "launch",
+      "preLaunchTask": "maui: Build",
+      "targetFramework": "net9.0-ios",
+      "configuration": "Debug",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": ".NET MAUI (Android Device)",
+      "type": "maui",
+      "request": "launch",
+      "preLaunchTask": "maui: Build",
+      "targetFramework": "net9.0-android",
+      "configuration": "Debug",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": ".NET MAUI (Android Emulator)",
+      "type": "maui",
+      "request": "launch",
+      "preLaunchTask": "maui: Build",
+      "targetFramework": "net9.0-android",
+      "configuration": "Debug",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": ".NET MAUI (Mac Catalyst)",
+      "type": "maui",
+      "request": "launch",
+      "preLaunchTask": "maui: Build",
+      "targetFramework": "net9.0-maccatalyst",
+      "configuration": "Debug",
+      "internalConsoleOptions": "openOnSessionStart"
+    }
+  ]
+}
