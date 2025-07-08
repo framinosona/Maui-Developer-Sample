@@ -42,7 +42,7 @@ public class EnhancedBindableObject : INotifyPropertyChanged
         _values.TryAdd(propertyName, defaultValue);
         return defaultValue;
     }
-    
+
     protected bool SetValue<T>(T value, [CallerMemberName] string? propertyName = null)
     {
         if (string.IsNullOrWhiteSpace(propertyName))
@@ -55,7 +55,7 @@ public class EnhancedBindableObject : INotifyPropertyChanged
         OnPropertyChanged(propertyName);
         return true;
     }
-    
+
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
