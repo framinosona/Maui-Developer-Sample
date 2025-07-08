@@ -106,28 +106,6 @@ public class OrientationSensor_Service : BaseBindableSensor_Service
 
     #endregion
 
-    #region Human-Readable Device Orientation
-
-    /// <summary>
-    /// Simple device orientation description
-    /// </summary>
-    public string DeviceOrientation
-    {
-        get => GetValue("Unknown");
-        private set => SetValue(value);
-    }
-
-    /// <summary>
-    /// Detailed orientation description with angles
-    /// </summary>
-    public string OrientationDescription
-    {
-        get => GetValue("No data");
-        private set => SetValue(value);
-    }
-
-    #endregion
-
     protected override bool IsSensorMonitoring()
     {
         return OrientationSensor.IsMonitoring;
