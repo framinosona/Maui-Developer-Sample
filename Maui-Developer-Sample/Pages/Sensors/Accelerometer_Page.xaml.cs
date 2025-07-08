@@ -1,20 +1,23 @@
-using Maui_Developer_Sample.Pages.Sensors.Services;
+using Maui_Developer_Sample.Pages.Sensors.ViewModels;
 
 namespace Maui_Developer_Sample.Pages.Sensors;
 
 public partial class Accelerometer_Page : ContentPage
 {
-    public Accelerometer_Page(Accelerometer_Service accelerometerService)
+    private readonly AccelerometerViewModel _viewModel;
+
+    public Accelerometer_Page(AccelerometerViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = accelerometerService;
+        _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+        BindingContext = _viewModel;
     }
 
     protected override void OnDisappearing()
     {
-        if (BindingContext is Accelerometer_Service sensorService)
+        if (_viewModel.IsMonitoring)
         {
-            sensorService.IsMonitoring = false;
+            _viewModel.IsMonitoring = false;
         }
         base.OnDisappearing();
     }

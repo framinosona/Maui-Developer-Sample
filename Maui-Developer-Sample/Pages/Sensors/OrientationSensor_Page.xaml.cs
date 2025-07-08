@@ -1,20 +1,23 @@
-using Maui_Developer_Sample.Pages.Sensors.Services;
+using Maui_Developer_Sample.Pages.Sensors.ViewModels;
 
 namespace Maui_Developer_Sample.Pages.Sensors;
 
 public partial class OrientationSensor_Page : ContentPage
 {
-    public OrientationSensor_Page(OrientationSensor_Service orientationSensorService)
+    private readonly OrientationSensorViewModel _viewModel;
+
+    public OrientationSensor_Page(OrientationSensorViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = orientationSensorService;
+        _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+        BindingContext = _viewModel;
     }
 
     protected override void OnDisappearing()
     {
-        if (BindingContext is OrientationSensor_Service sensorService)
+        if (_viewModel.IsMonitoring)
         {
-            sensorService.IsMonitoring = false;
+            _viewModel.IsMonitoring = false;
         }
         base.OnDisappearing();
     }

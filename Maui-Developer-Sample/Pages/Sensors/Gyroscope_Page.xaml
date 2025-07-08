@@ -3,11 +3,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-       xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
+       xmlns:viewModels="clr-namespace:Maui_Developer_Sample.Pages.Sensors.ViewModels"
        xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
        x:Class="Maui_Developer_Sample.Pages.Sensors.Gyroscope_Page"
        Title="{Binding .}"
-       x:DataType="sensors:Gyroscope_Service">
+       x:DataType="viewModels:GyroscopeViewModel">
        <ContentPage.Resources>
               <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
        </ContentPage.Resources>
@@ -57,15 +57,15 @@
                                           Text="Rad/s" />
                                    <Label Grid.Row="1"
                                           Grid.Column="1"
-                                          Text="{Binding XRadians, StringFormat='{0:F1}'}"
+                                          Text="{Binding XinRadPerSec, StringFormat='{0:F1}'}"
                                           HorizontalOptions="Center" />
                                    <Label Grid.Row="1"
                                           Grid.Column="2"
-                                          Text="{Binding YRadians, StringFormat='{0:F1}'}"
+                                          Text="{Binding YinRadPerSec, StringFormat='{0:F1}'}"
                                           HorizontalOptions="Center" />
                                    <Label Grid.Row="1"
                                           Grid.Column="3"
-                                          Text="{Binding ZRadians, StringFormat='{0:F1}'}"
+                                          Text="{Binding ZinRadPerSec, StringFormat='{0:F1}'}"
                                           HorizontalOptions="Center" />
 
                                    <Label Grid.Row="2"
@@ -73,15 +73,15 @@
                                           Text="Deg/s" />
                                    <Label Grid.Row="2"
                                           Grid.Column="1"
-                                          Text="{Binding XDegrees, StringFormat='{0:F0}'}"
+                                          Text="{Binding XinDegPerSec, StringFormat='{0:F0}'}"
                                           HorizontalOptions="Center" />
                                    <Label Grid.Row="2"
                                           Grid.Column="2"
-                                          Text="{Binding YDegrees, StringFormat='{0:F0}'}"
+                                          Text="{Binding YinDegPerSec, StringFormat='{0:F0}'}"
                                           HorizontalOptions="Center" />
                                    <Label Grid.Row="2"
                                           Grid.Column="3"
-                                          Text="{Binding ZDegrees, StringFormat='{0:F0}'}"
+                                          Text="{Binding ZinDegPerSec, StringFormat='{0:F0}'}"
                                           HorizontalOptions="Center" />
                             </Grid>
 
@@ -94,19 +94,19 @@
                                    HorizontalOptions="Center">
                                    <views:RotationIndicator Grid.Column="0"
                                           Grid.Row="0"
-                                          Value="{Binding ZDegrees}"
-                                          MaxValue="360"
-                                          MinValue="-360" />
+                                          Value="{Binding ZinDegPerSec}"
+                                          MaxValue="180"
+                                          MinValue="-180" />
                                    <views:BidirectionalIndicator Grid.Column="1"
                                           Grid.Row="0"
                                           Orientation="Vertical"
-                                          Value="{Binding XDegrees }"
+                                          Value="{Binding XinDegPerSec}"
                                           MaxValue="180"
                                           MinValue="-180" />
                                    <views:BidirectionalIndicator Grid.Column="0"
                                           Grid.Row="1"
                                           Orientation="Horizontal"
-                                          Value="{Binding YDegrees }"
+                                          Value="{Binding YinDegPerSec}"
                                           MaxValue="180"
                                           MinValue="-180" />
                             </Grid>
@@ -116,7 +116,7 @@
                                    ColumnSpacing="2"
                                    HorizontalOptions="Center">
                                    <views:RawValueImageView Grid.Column="0"
-                                          Value="{Binding XDegrees}"
+                                          Value="{Binding XinDegPerSec}"
                                           MaxValue="180"
                                           MinValue="-180"
                                           BackgroundColor="LightGray"
@@ -124,7 +124,7 @@
                                           NegativeImageSource="rotation_x_arrow_neg"
                                           NeutralImageSource="rotation_x_empty" />
                                    <views:RawValueImageView Grid.Column="1"
-                                          Value="{Binding YDegrees}"
+                                          Value="{Binding YinDegPerSec}"
                                           MaxValue="180"
                                           MinValue="-180"
                                           BackgroundColor="LightGray"
@@ -132,7 +132,7 @@
                                           NegativeImageSource="rotation_y_arrow_neg"
                                           NeutralImageSource="rotation_y_empty" />
                                    <views:RawValueImageView Grid.Column="2"
-                                          Value="{Binding ZDegrees}"
+                                          Value="{Binding ZinDegPerSec}"
                                           MaxValue="360"
                                           MinValue="-360"
                                           BackgroundColor="LightGray"

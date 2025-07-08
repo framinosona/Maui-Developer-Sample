@@ -3,11 +3,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-    xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
+    xmlns:viewModels="clr-namespace:Maui_Developer_Sample.Pages.Sensors.ViewModels"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Class="Maui_Developer_Sample.Pages.Sensors.Magnetometer_Page"
     Title="{Binding .}"
-    x:DataType="sensors:Magnetometer_Service">
+    x:DataType="viewModels:MagnetometerViewModel">
     <ContentPage.Resources>
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </ContentPage.Resources>
@@ -38,19 +38,19 @@
                     ColumnSpacing="2"
                     HorizontalOptions="Center">
                     <views:RawValueLabel Grid.Column="0"
-                        Value="{Binding XInMicroTesla}"
+                        Value="{Binding XinMicroTeslas}"
                         Format="X: {0:F0} µT"
                         MaxValue="400"
                         MinValue="-400"
                         HorizontalOptions="Center" />
                     <views:RawValueLabel Grid.Column="1"
-                        Value="{Binding YInMicroTesla}"
+                        Value="{Binding YinMicroTeslas}"
                         Format="Y: {0:F0} µT"
                         MaxValue="400"
                         MinValue="-400"
                         HorizontalOptions="Center" />
                     <views:RawValueLabel Grid.Column="2"
-                        Value="{Binding ZInMicroTesla}"
+                        Value="{Binding ZinMicroTeslas}"
                         Format="Z: {0:F0} µT"
                         MaxValue="400"
                         MinValue="-400"
@@ -66,19 +66,19 @@
                     HorizontalOptions="Center">
                     <views:ZAxisIndicator Grid.Column="0"
                         Grid.Row="0"
-                        Value="{Binding ZInMicroTesla}"
+                        Value="{Binding ZinMicroTeslas}"
                         MaxValue="400"
                         MinValue="-400" />
                     <views:BidirectionalIndicator Grid.Column="1"
                         Grid.Row="0"
                         Orientation="Vertical"
-                        Value="{Binding YInMicroTesla}"
+                        Value="{Binding YinMicroTeslas}"
                         MaxValue="400"
                         MinValue="-400" />
                     <views:BidirectionalIndicator Grid.Column="0"
                         Grid.Row="1"
                         Orientation="Horizontal"
-                        Value="{Binding XInMicroTesla}"
+                        Value="{Binding XinMicroTeslas}"
                         MaxValue="400"
                         MinValue="-400" />
                 </Grid>

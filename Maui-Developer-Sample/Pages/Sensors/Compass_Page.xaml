@@ -1,58 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
-             x:Class="Maui_Developer_Sample.Pages.Sensors.Compass_Page"
-             Title="{Binding .}"
-             x:DataType="sensors:Compass_Service">
-    <ContentPage.Resources>
-        <toolkit:MathExpressionConverter x:Key="MathExpressionConverter" />
-        <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
-    </ContentPage.Resources>
-    <ContentPage.Content>
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+       xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
+       xmlns:viewModels="clr-namespace:Maui_Developer_Sample.Pages.Sensors.ViewModels"
+       x:Class="Maui_Developer_Sample.Pages.Sensors.Compass_Page"
+       Title="{Binding .}"
+       x:DataType="viewModels:CompassViewModel">
+       <ContentPage.Resources>
+              <toolkit:MathExpressionConverter x:Key="MathExpressionConverter" />
+              <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+       </ContentPage.Resources>
+       <ContentPage.Content>
 
-        <ScrollView VerticalOptions="Fill"
-                    HorizontalOptions="Fill">
-            <VerticalStackLayout Padding="30"
-                                 Spacing="25">
-                <Grid ColumnDefinitions="Auto, 1*"
-                      ColumnSpacing="12">
-                    <Switch Grid.Column="0"
-                            IsToggled="{Binding IsMonitoring}"
-                            IsEnabled="{Binding IsSupported}" />
-                    <Label Grid.Column="1"
-                           Text="{Binding Status}"
-                           Style="{StaticResource StatusLabel}" />
-                </Grid>
-                <Label Text="Not available on this device"
-                       Style="{StaticResource StatusLabel}"
-                       TextColor="Red"
-                       IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
+              <ScrollView VerticalOptions="Fill"
+                     HorizontalOptions="Fill">
+                     <VerticalStackLayout Padding="30"
+                            Spacing="25">
+                            <Grid ColumnDefinitions="Auto, 1*"
+                                   ColumnSpacing="12">
+                                   <Switch Grid.Column="0"
+                                          IsToggled="{Binding IsMonitoring}"
+                                          IsEnabled="{Binding IsSupported}" />
+                                   <Label Grid.Column="1"
+                                          Text="{Binding Status}"
+                                          Style="{StaticResource StatusLabel}" />
+                            </Grid>
+                            <Label Text="Not available on this device"
+                                   Style="{StaticResource StatusLabel}"
+                                   TextColor="Red"
+                                   IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
 
-                <Label Text="Raw Compass Values:"
-                       FontAttributes="Bold" />
-                <Label Text="{Binding HeadingInDegrees, StringFormat='Heading: {0:F1}°'}" />
-                <Label Text="Note : from 0° to 360°" />
+                            <Label Text="Raw Compass Values:"
+                                   FontAttributes="Bold" />
+                            <Label
+                                   Text="{Binding HeadingDisplay}" />
+                            <Label Text="Note : from 0° to 360°" />
 
-                <Image Source="compass"
-                       WidthRequest="200"
-                       HeightRequest="200"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"
-                       Rotation="{Binding HeadingInDegrees, Converter={StaticResource MathExpressionConverter}, ConverterParameter='-x'}" />
+                            <Image Source="compass"
+                                   WidthRequest="200"
+                                   HeightRequest="200"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Rotation="{Binding HeadingMagneticNorth, Converter={StaticResource MathExpressionConverter}, ConverterParameter='-x'}" />
 
-                <views:MonodirectionalIndicator Orientation="Horizontal"
-                                                Value="{Binding HeadingInDegrees}"
-                                                MaxValue="360"
-                                                MinValue="0"
-                                                Tolerance="0"
-                                                HorizontalOptions="Fill"
-                                                HeightRequest="30" />
-            </VerticalStackLayout>
-        </ScrollView>
+                            <views:MonodirectionalIndicator Orientation="Horizontal"
+                                   Value="{Binding HeadingMagneticNorth}"
+                                   MaxValue="360"
+                                   MinValue="0"
+                                   Tolerance="0"
+                                   HorizontalOptions="Fill"
+                                   HeightRequest="30" />
+                     </VerticalStackLayout>
+              </ScrollView>
 
-    </ContentPage.Content>
+       </ContentPage.Content>
 </ContentPage>

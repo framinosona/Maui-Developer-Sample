@@ -1,19 +1,23 @@
-using Maui_Developer_Sample.Pages.Sensors.Services;
+using Maui_Developer_Sample.Pages.Sensors.ViewModels;
 
 namespace Maui_Developer_Sample.Pages.Sensors;
 
 public partial class Barometer_Page : ContentPage
 {
-    public Barometer_Page(Barometer_Service barometerService)
+    private readonly BarometerViewModel _viewModel;
+
+    public Barometer_Page(BarometerViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = barometerService;
+        _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+        BindingContext = _viewModel;
     }
+
     protected override void OnDisappearing()
     {
-        if (BindingContext is Barometer_Service sensorService)
+        if (_viewModel.IsMonitoring)
         {
-            sensorService.IsMonitoring = false;
+            _viewModel.IsMonitoring = false;
         }
         base.OnDisappearing();
     }

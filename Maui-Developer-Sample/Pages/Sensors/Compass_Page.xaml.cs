@@ -1,19 +1,23 @@
-using Maui_Developer_Sample.Pages.Sensors.Services;
+using Maui_Developer_Sample.Pages.Sensors.ViewModels;
 
 namespace Maui_Developer_Sample.Pages.Sensors;
 
-public partial class Compass_Page
+public partial class Compass_Page : ContentPage
 {
-    public Compass_Page(Compass_Service compassService)
+    private readonly CompassViewModel _viewModel;
+
+    public Compass_Page(CompassViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = compassService;
+        _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+        BindingContext = _viewModel;
     }
+
     protected override void OnDisappearing()
     {
-        if (BindingContext is Compass_Service sensorService)
+        if (_viewModel.IsMonitoring)
         {
-            sensorService.IsMonitoring = false;
+            _viewModel.IsMonitoring = false;
         }
         base.OnDisappearing();
     }

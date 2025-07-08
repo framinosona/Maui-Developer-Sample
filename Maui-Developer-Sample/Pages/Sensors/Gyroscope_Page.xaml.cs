@@ -1,20 +1,23 @@
-using Maui_Developer_Sample.Pages.Sensors.Services;
+using Maui_Developer_Sample.Pages.Sensors.ViewModels;
 
 namespace Maui_Developer_Sample.Pages.Sensors;
 
 public partial class Gyroscope_Page : ContentPage
 {
-    public Gyroscope_Page(Gyroscope_Service gyroscopeService)
+    private readonly GyroscopeViewModel _viewModel;
+
+    public Gyroscope_Page(GyroscopeViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = gyroscopeService;
+        _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+        BindingContext = _viewModel;
     }
 
     protected override void OnDisappearing()
     {
-        if (BindingContext is Gyroscope_Service sensorService)
+        if (_viewModel.IsMonitoring)
         {
-            sensorService.IsMonitoring = false;
+            _viewModel.IsMonitoring = false;
         }
         base.OnDisappearing();
     }

@@ -4,10 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-    xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
+    xmlns:viewModels="clr-namespace:Maui_Developer_Sample.Pages.Sensors.ViewModels"
     x:Class="Maui_Developer_Sample.Pages.Sensors.Accelerometer_Page"
     Title="{Binding .}"
-    x:DataType="sensors:Accelerometer_Service">
+    x:DataType="viewModels:AccelerometerViewModel">
     <ContentPage.Resources>
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </ContentPage.Resources>
