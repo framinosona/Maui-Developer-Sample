@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:viewModels="clr-namespace:Maui_Developer_Sample.Pages.UI.ViewModels"
+  xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+  x:Class="Maui_Developer_Sample.Pages.UI.ParallaxDemo_Page"
+  Title="{Binding .}"
+  x:DataType="viewModels:ParallaxDemoViewModel">
+  <ContentPage.Resources>
+    <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <ScrollView VerticalOptions="Fill" HorizontalOptions="Fill">
+      <VerticalStackLayout Padding="30" Spacing="25">
+        <Grid ColumnDefinitions="Auto, 1*" ColumnSpacing="12">
+          <Switch Grid.Column="0" IsToggled="{Binding IsMonitoring}"
+            IsEnabled="{Binding IsSupported}" />
+          <Label Grid.Column="1" Text="{Binding Status}" Style="{StaticResource StatusLabel}" />
+        </Grid>
+        <Label Text="Not available on this device" Style="{StaticResource StatusLabel}"
+          TextColor="Red"
+          IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
+
+        <Label Text="This page demonstrates parallax effects using gyroscope data."
+          FontAttributes="Bold" />
+        <Label
+          Text="Toggle the switch above to start the gyroscope sensor and see the values change as you rotate your device." />
+
+        <Label Text="Gyroscope Values:" FontAttributes="Bold" />
+        <Grid ColumnDefinitions="1*, 1*, 1*" ColumnSpacing="10">
+          <Label Grid.Column="0" Text="{Binding XDegrees, StringFormat='X: {0:F1}°/s'}"
+            HorizontalOptions="Center" />
+          <Label Grid.Column="1" Text="{Binding YDegrees, StringFormat='Y: {0:F1}°/s'}"
+            HorizontalOptions="Center" />
+          <Label Grid.Column="2" Text="{Binding ZDegrees, StringFormat='Z: {0:F1}°/s'}"
+            HorizontalOptions="Center" />
+        </Grid>
+
+        <Label Text="Future parallax effects will be implemented here..." />
+      </VerticalStackLayout>
+    </ScrollView>
+  </ContentPage.Content>
+</ContentPage>

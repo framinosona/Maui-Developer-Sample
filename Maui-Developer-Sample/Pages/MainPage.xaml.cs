@@ -60,4 +60,9 @@ public partial class MainPage : ContentPage
     {
         Navigation.PushAsync(MauiProgram.Services?.GetRequiredService<AppTheme_Page>());
     }
+
+    private void OnNavigateToParallaxEffectClicked(object? sender, EventArgs e)
+    {
+        Navigation.PushAsync(MauiProgram.Services?.GetRequiredService<ParallaxDemo_Page>());
+    }
 }

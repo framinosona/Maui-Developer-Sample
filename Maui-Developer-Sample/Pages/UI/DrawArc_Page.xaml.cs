@@ -2,12 +2,15 @@ using Maui_Developer_Sample.Pages.UI.ViewModels;
 
 namespace Maui_Developer_Sample.Pages.UI;
 
-public partial class DrawArc_Page 
+public partial class DrawArc_Page
 {
-    public DrawArc_Page(DrawArc_ViewModel drawArcViewModel)
+    private readonly DrawArcViewModel _viewModel;
+
+    public DrawArc_Page(DrawArcViewModel drawArcViewModel)
     {
         InitializeComponent();
-        BindingContext = drawArcViewModel;
+        _viewModel = drawArcViewModel ?? throw new ArgumentNullException(nameof(drawArcViewModel));
+        BindingContext = _viewModel;
     }
 }
 

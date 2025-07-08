@@ -1,13 +1,16 @@
-using Maui_Developer_Sample.Pages.UI.Services;
+using Maui_Developer_Sample.Pages.UI.ViewModels;
 
 namespace Maui_Developer_Sample.Pages.UI;
 
 public partial class AppTheme_Page
 {
-    public AppTheme_Page(AppTheme_Service appThemeService)
+    private readonly AppThemeViewModel _viewModel;
+
+    public AppTheme_Page(AppThemeViewModel appThemeViewModel)
     {
         InitializeComponent();
-        BindingContext = appThemeService;
+        _viewModel = appThemeViewModel ?? throw new ArgumentNullException(nameof(appThemeViewModel));
+        BindingContext = _viewModel;
     }
 }
 

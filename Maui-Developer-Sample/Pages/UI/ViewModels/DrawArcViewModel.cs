@@ -1,8 +1,9 @@
 using Maui_Developer_Sample.Helpers;
+using Maui_Developer_Sample.Services;
 
 namespace Maui_Developer_Sample.Pages.UI.ViewModels;
 
-public class DrawArc_ViewModel : EnhancedBindableObject
+public class DrawArcViewModel : EnhancedBindableObject
 {
     public float EndAngle
     {

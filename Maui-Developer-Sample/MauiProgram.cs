@@ -10,7 +10,7 @@ public static class MauiProgram
     public static IServiceProvider? Services { get; private set; }
 
     public static IConfiguration? Configuration { get; private set; }
-    
+
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
@@ -43,10 +43,10 @@ public static class MauiProgram
         // App Capabilities
         mauiAppBuilder.Services.AddSingleton<Services.HapticFeedbackService>();
         mauiAppBuilder.Services.AddSingleton<Services.VibrationService>();
-        
+
         // UI
-        mauiAppBuilder.Services.AddSingleton<Pages.UI.Services.AppTheme_Service>();
-        
+        mauiAppBuilder.Services.AddSingleton<Services.AppThemeService>();
+
         // Logging
         mauiAppBuilder.Services.AddLogging(logging => logging.SetMinimumLevel(LogLevel.Debug));
 
@@ -59,6 +59,11 @@ public static class MauiProgram
         // AppCapability ViewModels
         mauiAppBuilder.Services.AddTransient<Pages.AppCapability.ViewModels.HapticFeedbackViewModel>();
         mauiAppBuilder.Services.AddTransient<Pages.AppCapability.ViewModels.VibrationViewModel>();
+
+        // UI ViewModels
+        mauiAppBuilder.Services.AddTransient<Pages.UI.ViewModels.DrawArcViewModel>();
+        mauiAppBuilder.Services.AddTransient<Pages.UI.ViewModels.AppThemeViewModel>();
+        mauiAppBuilder.Services.AddTransient<Pages.UI.ViewModels.ParallaxDemoViewModel>();
 
         // Sensors
         mauiAppBuilder.Services.AddTransient<Pages.Sensors.Accelerometer_Page>();
@@ -73,9 +78,9 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<Pages.AppCapability.HapticFeedback_Page>();
 
         // UI
-        mauiAppBuilder.Services.AddTransient<Pages.UI.ViewModels.DrawArc_ViewModel>();
         mauiAppBuilder.Services.AddTransient<Pages.UI.DrawArc_Page>();
         mauiAppBuilder.Services.AddTransient<Pages.UI.AppTheme_Page>();
+        mauiAppBuilder.Services.AddTransient<Pages.UI.ParallaxDemo_Page>();
 
         return mauiAppBuilder;
     }

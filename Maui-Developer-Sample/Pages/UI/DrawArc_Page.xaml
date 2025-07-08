@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.UI.Views"
-             xmlns:vm="clr-namespace:Maui_Developer_Sample.Pages.UI.ViewModels"
-             x:Class="Maui_Developer_Sample.Pages.UI.DrawArc_Page"
-             Title="DrawArc"
-             x:DataType="vm:DrawArc_ViewModel">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.UI.Views"
+    xmlns:vm="clr-namespace:Maui_Developer_Sample.Pages.UI.ViewModels"
+    x:Class="Maui_Developer_Sample.Pages.UI.DrawArc_Page"
+    Title="DrawArc"
+    x:DataType="vm:DrawArcViewModel">
     <ContentPage.Content>
         <ScrollView VerticalOptions="Fill"
-                    HorizontalOptions="Fill">
+            HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
-                                 Spacing="25">
+                Spacing="25">
                 <Label Text="This demo shows how to use the DrawArc"
-                       Style="{StaticResource SubHeadline}" />
+                    Style="{StaticResource SubHeadline}" />
                 <Slider x:Name="StartAngleSlider"
-                        Minimum="0"
-                        Maximum="360"
-                        Value="{Binding StartAngle}"
-                        MinimumTrackColor="Green"
-                        ThumbColor="Green"
-                        HorizontalOptions="Fill" />
+                    Minimum="0"
+                    Maximum="360"
+                    Value="{Binding StartAngle}"
+                    MinimumTrackColor="Green"
+                    ThumbColor="Green"
+                    HorizontalOptions="Fill" />
                 <Slider x:Name="EndAngleSlider"
-                        Minimum="0"
-                        Maximum="360"
-                        Value="{Binding EndAngle}"
-                        MinimumTrackColor="Red"
-                        ThumbColor="Red"
-                        HorizontalOptions="Fill" />
+                    Minimum="0"
+                    Maximum="360"
+                    Value="{Binding EndAngle}"
+                    MinimumTrackColor="Red"
+                    ThumbColor="Red"
+                    HorizontalOptions="Fill" />
                 <Slider x:Name="OffsetAngleSlider"
-                        Minimum="-360"
-                        Maximum="360"
-                        Value="{Binding OffsetAngle}"
-                        MinimumTrackColor="Blue"
-                        ThumbColor="Blue"
-                        HorizontalOptions="Fill" />
+                    Minimum="-360"
+                    Maximum="360"
+                    Value="{Binding OffsetAngle}"
+                    MinimumTrackColor="Blue"
+                    ThumbColor="Blue"
+                    HorizontalOptions="Fill" />
                 <HorizontalStackLayout Spacing="25">
                     <Switch x:Name="ClockwiseSwitch"
-                            VerticalOptions="Center"
-                            IsToggled="{Binding Clockwise}"/>
+                        VerticalOptions="Center"
+                        IsToggled="{Binding Clockwise}" />
                     <Label Text="Clockwise"
-                           VerticalOptions="Center" />
+                        VerticalOptions="Center" />
                     <VerticalStackLayout>
                         <Label
                             Text="{Binding StartAngle, StringFormat='Start: {0:F2}°'}"
                             TextColor="Green"
                             VerticalOptions="Center" />
                         <Label Text="{Binding EndAngle, StringFormat='End: {0:F2}°'}"
-                               TextColor="Red"
-                               VerticalOptions="Center" />
+                            TextColor="Red"
+                            VerticalOptions="Center" />
                         <Label
                             Text="{Binding OffsetAngle, StringFormat='Offset: {0:F2}°'}"
                             TextColor="Blue"
@@ -56,12 +56,12 @@
                     </VerticalStackLayout>
                 </HorizontalStackLayout>
                 <views:DrawArcGraphicsView WidthRequest="300"
-                                           HeightRequest="300"
-                                           HorizontalOptions="Center"
-                                           OffsetAngle="{Binding OffsetAngle}"
-                                           StartAngle="{Binding StartAngle}"
-                                           EndAngle="{Binding EndAngle}"
-                                           Clockwise="{Binding Clockwise}" />
+                    HeightRequest="300"
+                    HorizontalOptions="Center"
+                    OffsetAngle="{Binding OffsetAngle}"
+                    StartAngle="{Binding StartAngle}"
+                    EndAngle="{Binding EndAngle}"
+                    Clockwise="{Binding Clockwise}" />
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
