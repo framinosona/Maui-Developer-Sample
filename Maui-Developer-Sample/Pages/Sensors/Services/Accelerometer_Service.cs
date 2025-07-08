@@ -1,3 +1,5 @@
+using System.Numerics;
+
 namespace Maui_Developer_Sample.Pages.Sensors.Services;
 
 /// <summary>
@@ -69,6 +71,20 @@ public class Accelerometer_Service : BaseBindableSensor_Service
         set => SetValue(value);
     }
 
+    public Vector3 AccelerationVector
+    {
+        get => GetValue(Vector3.Zero);
+        set
+        {
+            if (SetValue(value))
+            {
+                XinG = value.X;
+                YinG = value.Y;
+                ZinG = value.Z;
+            }
+        }
+    }
+
     protected override bool IsSensorMonitoring()
     {
         return Accelerometer.Default.IsMonitoring;
@@ -84,9 +100,9 @@ public class Accelerometer_Service : BaseBindableSensor_Service
         Accelerometer.Default.ReadingChanged -= OnReadingChanged;
     }
 
-    protected override void StartSensor()
+    protected override void StartSensor(SensorSpeed sensorSpeed)
     {
-        Accelerometer.Default.Start(SensorSpeed);
+        Accelerometer.Default.Start(sensorSpeed);
     }
 
     protected override void StopSensor()

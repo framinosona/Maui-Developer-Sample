@@ -1,81 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
-             xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
-             x:Class="Maui_Developer_Sample.Pages.Sensors.Accelerometer_Page"
-             Title="{Binding .}"
-             x:DataType="sensors:Accelerometer_Service">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Views"
+    xmlns:sensors="clr-namespace:Maui_Developer_Sample.Pages.Sensors.Services"
+    x:Class="Maui_Developer_Sample.Pages.Sensors.Accelerometer_Page"
+    Title="{Binding .}"
+    x:DataType="sensors:Accelerometer_Service">
     <ContentPage.Resources>
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </ContentPage.Resources>
     <ContentPage.Content>
 
         <ScrollView VerticalOptions="Fill"
-                    HorizontalOptions="Fill">
+            HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
-                                 Spacing="25">
+                Spacing="25">
                 <Grid ColumnDefinitions="Auto, 1*"
-                      ColumnSpacing="12">
+                    ColumnSpacing="12">
                     <Switch Grid.Column="0"
-                            IsToggled="{Binding IsMonitoring}"
-                            IsEnabled="{Binding IsSupported}" />
+                        IsToggled="{Binding IsMonitoring}"
+                        IsEnabled="{Binding IsSupported}" />
                     <Label Grid.Column="1"
-                           Text="{Binding Status}"
-                           Style="{StaticResource StatusLabel}" />
+                        Text="{Binding Status}"
+                        Style="{StaticResource StatusLabel}" />
                 </Grid>
                 <Label Text="Not available on this device"
-                       Style="{StaticResource StatusLabel}"
-                       TextColor="Red"
-                       IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
+                    Style="{StaticResource StatusLabel}"
+                    TextColor="Red"
+                    IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
 
                 <Label Text="Raw Accelerometer Values:"
-                       FontAttributes="Bold" />
+                    FontAttributes="Bold" />
                 <Grid ColumnDefinitions="1*, 1*, 1*">
                     <views:RawValueLabel Grid.Column="0"
-                                         Value="{Binding XinG}"
-                                         MaxValue="2"
-                                         MinValue="-2"
-                                         Format="X: {0:F2} G" />
+                        Value="{Binding XinG}"
+                        MaxValue="2"
+                        MinValue="-2"
+                        Format="X: {0:F2} G" />
                     <views:RawValueLabel Grid.Column="1"
-                                         Value="{Binding YinG}"
-                                         MaxValue="2"
-                                         MinValue="-2"
-                                         Format="Y: {0:F2} G" />
+                        Value="{Binding YinG}"
+                        MaxValue="2"
+                        MinValue="-2"
+                        Format="Y: {0:F2} G" />
                     <views:RawValueLabel Grid.Column="2"
-                                         Value="{Binding ZinG}"
-                                         MaxValue="2"
-                                         MinValue="-2"
-                                         Format="Z: {0:F2} G" />
+                        Value="{Binding ZinG}"
+                        MaxValue="2"
+                        MinValue="-2"
+                        Format="Z: {0:F2} G" />
                 </Grid>
                 <Label Text="Note : 1G = 9,81m/s²" />
 
                 <Grid HeightRequest="300"
-                      WidthRequest="300"
-                      ColumnDefinitions="11*, 1*"
-                      RowDefinitions="11*, 1*"
-                      ColumnSpacing="2"
-                      RowSpacing="2"
-                      HorizontalOptions="Center">
+                    WidthRequest="300"
+                    ColumnDefinitions="11*, 1*"
+                    RowDefinitions="11*, 1*"
+                    ColumnSpacing="2"
+                    RowSpacing="2"
+                    HorizontalOptions="Center">
                     <views:ZAxisIndicator Grid.Column="0"
-                                          Grid.Row="0"
-                                          Value="{Binding ZinG}"
-                                          MaxValue="2"
-                                          MinValue="-2" />
+                        Grid.Row="0"
+                        Value="{Binding ZinG}"
+                        MaxValue="2"
+                        MinValue="-2" />
                     <views:BidirectionalIndicator Grid.Column="1"
-                                                  Grid.Row="0"
-                                                  Orientation="Vertical"
-                                                  Value="{Binding YinG}"
-                                                  MaxValue="2"
-                                                  MinValue="-2" />
+                        Grid.Row="0"
+                        Orientation="Vertical"
+                        Value="{Binding YinG}"
+                        MaxValue="2"
+                        MinValue="-2" />
                     <views:BidirectionalIndicator Grid.Column="0"
-                                                  Grid.Row="1"
-                                                  Orientation="Horizontal"
-                                                  Value="{Binding XinG}"
-                                                  MaxValue="2"
-                                                  MinValue="-2" />
+                        Grid.Row="1"
+                        Orientation="Horizontal"
+                        Value="{Binding XinG}"
+                        MaxValue="2"
+                        MinValue="-2" />
                 </Grid>
             </VerticalStackLayout>
         </ScrollView>

@@ -11,7 +11,7 @@ public partial class Compass_Page
     }
     protected override void OnDisappearing()
     {
-        if (BindingContext is BaseBindableSensor_Service sensorService)
+        if (BindingContext is Compass_Service sensorService)
         {
             sensorService.IsMonitoring = false;
         }

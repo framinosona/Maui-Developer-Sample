@@ -11,7 +11,7 @@ public partial class Barometer_Page : ContentPage
     }
     protected override void OnDisappearing()
     {
-        if (BindingContext is BaseBindableSensor_Service sensorService)
+        if (BindingContext is Barometer_Service sensorService)
         {
             sensorService.IsMonitoring = false;
         }

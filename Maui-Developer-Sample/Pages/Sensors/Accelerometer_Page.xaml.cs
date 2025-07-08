@@ -12,7 +12,7 @@ public partial class Accelerometer_Page : ContentPage
 
     protected override void OnDisappearing()
     {
-        if (BindingContext is BaseBindableSensor_Service sensorService)
+        if (BindingContext is Accelerometer_Service sensorService)
         {
             sensorService.IsMonitoring = false;
         }

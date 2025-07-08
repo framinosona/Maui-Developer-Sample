@@ -189,9 +189,6 @@ public class OrientationSensor_Service : BaseBindableSensor_Service
         PitchInDegrees = RadiansToDegrees(pitch);
         YawInDegrees = RadiansToDegrees(yaw);
         RollInDegrees = RadiansToDegrees(roll);
-
-        // Normalize to 0-360 range
-        //var normalized = ((YawInDegrees % 360) + 360) % 360;
     }
 
     /// <summary>

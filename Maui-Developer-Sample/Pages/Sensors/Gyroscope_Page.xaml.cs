@@ -12,7 +12,7 @@ public partial class Gyroscope_Page : ContentPage
 
     protected override void OnDisappearing()
     {
-        if (BindingContext is BaseBindableSensor_Service sensorService)
+        if (BindingContext is Gyroscope_Service sensorService)
         {
             sensorService.IsMonitoring = false;
         }
