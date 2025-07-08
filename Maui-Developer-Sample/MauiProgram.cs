@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -41,8 +41,8 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<Pages.Sensors.Services.Barometer_Service>();
 
         // App Capabilities
-        mauiAppBuilder.Services.AddSingleton<Pages.AppCapability.Services.HapticFeedback_Service>();
-        mauiAppBuilder.Services.AddSingleton<Pages.AppCapability.Services.Vibration_Service>();
+        mauiAppBuilder.Services.AddSingleton<Services.HapticFeedbackService>();
+        mauiAppBuilder.Services.AddSingleton<Services.VibrationService>();
         
         // UI
         mauiAppBuilder.Services.AddSingleton<Pages.UI.Services.AppTheme_Service>();
@@ -56,6 +56,9 @@ public static class MauiProgram
     public static MauiAppBuilder ConfigurePages(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddTransient<Pages.MainPage>();
+        // AppCapability ViewModels
+        mauiAppBuilder.Services.AddTransient<Pages.AppCapability.ViewModels.HapticFeedbackViewModel>();
+        mauiAppBuilder.Services.AddTransient<Pages.AppCapability.ViewModels.VibrationViewModel>();
 
         // Sensors
         mauiAppBuilder.Services.AddTransient<Pages.Sensors.Accelerometer_Page>();

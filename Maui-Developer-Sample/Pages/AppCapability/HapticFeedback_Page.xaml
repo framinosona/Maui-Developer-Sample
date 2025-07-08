@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
-             xmlns:appCapability="clr-namespace:Maui_Developer_Sample.Pages.AppCapability.Services"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Maui_Developer_Sample.Pages.AppCapability.HapticFeedback_Page"
-             Title="Haptic Feedback"
-             x:DataType="appCapability:HapticFeedback_Service">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xaml="clr-namespace:Microsoft.Maui.Controls.Xaml;assembly=Microsoft.Maui.Controls.Xaml"
+    xmlns:viewModels="clr-namespace:Maui_Developer_Sample.Pages.AppCapability.ViewModels"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="Maui_Developer_Sample.Pages.AppCapability.HapticFeedback_Page"
+    Title="Haptic Feedback"
+    x:DataType="viewModels:HapticFeedbackViewModel">
     <ContentPage.Resources>
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </ContentPage.Resources>
-       <ContentPage.Content>
+    <ContentPage.Content>
         <ScrollView VerticalOptions="Fill"
-                    HorizontalOptions="Fill">
+            HorizontalOptions="Fill">
             <VerticalStackLayout Padding="30"
-                                 Spacing="25">
+                Spacing="25">
                 <Label Text="Not available on this device"
-                       Style="{StaticResource StatusLabel}"
-                       TextColor="Red"
-                       IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
+                    Style="{StaticResource StatusLabel}"
+                    TextColor="Red"
+                    IsVisible="{Binding IsSupported, Converter={StaticResource InvertedBoolConverter}}" />
 
                 <Button Text="Click (Standard)"
-                        Command="{Binding VibrateClickCommand}"
-                        HorizontalOptions="Fill" />
+                    Command="{Binding VibrateClickCommand}"
+                    HorizontalOptions="Fill" />
 
                 <Button Text="Long Press (Medium)"
-                        Command="{Binding VibrateLongPressCommand}"
-                        HorizontalOptions="Fill" />
+                    Command="{Binding VibrateLongPressCommand}"
+                    HorizontalOptions="Fill" />
             </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
