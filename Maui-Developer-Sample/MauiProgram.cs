@@ -1,5 +1,4 @@
-using CommunityToolkit.Maui;
-
+﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -17,6 +16,7 @@ public static class MauiProgram
         builder.UseMauiApp<App>()
                .UseMauiCommunityToolkit()
                .ConfigureServices()
+               .ConfigureViewModels()
                .ConfigurePages()
                .ConfigureFonts(fonts =>
                {
@@ -33,12 +33,12 @@ public static class MauiProgram
     public static MauiAppBuilder ConfigureServices(this MauiAppBuilder mauiAppBuilder)
     {
         // Sensors
-        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.Services.Accelerometer_Service>();
-        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.Services.Gyroscope_Service>();
-        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.Services.Magnetometer_Service>();
-        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.Services.OrientationSensor_Service>();
-        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.Services.Compass_Service>();
-        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.Services.Barometer_Service>();
+        mauiAppBuilder.Services.AddSingleton<Services.AccelerometerSensorService>();
+        mauiAppBuilder.Services.AddSingleton<Services.GyroscopeSensorService>();
+        mauiAppBuilder.Services.AddSingleton<Services.MagnetometerSensorService>();
+        mauiAppBuilder.Services.AddSingleton<Services.OrientationSensorService>();
+        mauiAppBuilder.Services.AddSingleton<Services.CompassSensorService>();
+        mauiAppBuilder.Services.AddSingleton<Services.BarometerSensorService>();
 
         // App Capabilities
         mauiAppBuilder.Services.AddSingleton<Services.HapticFeedbackService>();
@@ -53,17 +53,32 @@ public static class MauiProgram
         return mauiAppBuilder;
     }
 
+    public static MauiAppBuilder ConfigureViewModels(this MauiAppBuilder mauiAppBuilder)
+    {
+        // Sensors
+        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.ViewModels.AccelerometerViewModel>();
+        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.ViewModels.GyroscopeViewModel>();
+        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.ViewModels.MagnetometerViewModel>();
+        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.ViewModels.OrientationSensorViewModel>();
+        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.ViewModels.CompassViewModel>();
+        mauiAppBuilder.Services.AddSingleton<Pages.Sensors.ViewModels.BarometerViewModel>();
+
+        // App Capabilities
+        mauiAppBuilder.Services.AddSingleton<Pages.AppCapability.ViewModels.VibrationViewModel>();
+        mauiAppBuilder.Services.AddSingleton<Pages.AppCapability.ViewModels.HapticFeedbackViewModel>();
+
+        // UI
+        mauiAppBuilder.Services.AddSingleton<Pages.UI.ViewModels.DrawArcViewModel>();
+        mauiAppBuilder.Services.AddSingleton<Pages.UI.ViewModels.AppThemeViewModel>();
+        mauiAppBuilder.Services.AddSingleton<Pages.UI.ViewModels.ParallaxDemoViewModel>();
+
+        return mauiAppBuilder;
+
+    }
+
     public static MauiAppBuilder ConfigurePages(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddTransient<Pages.MainPage>();
-        // AppCapability ViewModels
-        mauiAppBuilder.Services.AddTransient<Pages.AppCapability.ViewModels.HapticFeedbackViewModel>();
-        mauiAppBuilder.Services.AddTransient<Pages.AppCapability.ViewModels.VibrationViewModel>();
-
-        // UI ViewModels
-        mauiAppBuilder.Services.AddTransient<Pages.UI.ViewModels.DrawArcViewModel>();
-        mauiAppBuilder.Services.AddTransient<Pages.UI.ViewModels.AppThemeViewModel>();
-        mauiAppBuilder.Services.AddTransient<Pages.UI.ViewModels.ParallaxDemoViewModel>();
 
         // Sensors
         mauiAppBuilder.Services.AddTransient<Pages.Sensors.Accelerometer_Page>();
