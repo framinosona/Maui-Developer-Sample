@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -70,7 +70,6 @@ public static class MauiProgram
         // UI
         mauiAppBuilder.Services.AddSingleton<Pages.UI.ViewModels.DrawArcViewModel>();
         mauiAppBuilder.Services.AddSingleton<Pages.UI.ViewModels.AppThemeViewModel>();
-        mauiAppBuilder.Services.AddSingleton<Pages.UI.ViewModels.ParallaxDemoViewModel>();
 
         return mauiAppBuilder;
 
