@@ -17,8 +17,8 @@ namespace Maui_Developer_Sample.Pages.Sensors.ViewModels;
 /// PRESSURE VALUES:
 /// - Standard atmospheric pressure: 1013.25 hPa (at sea level)
 /// - Typical range: 950-1050 hPa
-/// - High pressure: >1020 hPa (usually fair weather)
-/// - Low pressure: <1000 hPa (usually stormy weather)
+/// - High pressure: higher than 1020 hPa (usually fair weather)
+/// - Low pressure: lower than 1000 hPa (usually stormy weather)
 /// - Pressure decreases with altitude (~12 hPa per 100m)
 ///
 /// TYPICAL USAGE:
@@ -101,8 +101,8 @@ public class BarometerViewModel : EnhancedBindableObject
     /// <value>
     /// Range: Typically 950-1050 hPa
     /// Standard: 1013.25 hPa (at sea level)
-    /// High: >1020 hPa (fair weather)
-    /// Low: <1000 hPa (stormy weather)
+    /// High: higher than 1020 hPa (fair weather)
+    /// Low: lower than 1000 hPa (stormy weather)
     /// </value>
     public double PressureInHectopascals
     {
