@@ -1,4 +1,4 @@
-using CommunityToolkit.Maui;
+﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -94,7 +94,8 @@ public static class MauiProgram
         // UI
         mauiAppBuilder.Services.AddTransient<Pages.UI.DrawArc_Page>();
         mauiAppBuilder.Services.AddTransient<Pages.UI.AppTheme_Page>();
-        mauiAppBuilder.Services.AddTransient<Pages.UI.ParallaxDemo_Page>();
+        mauiAppBuilder.Services.AddTransient<Pages.UI.ParallaxGyroscope_Page>();
+        mauiAppBuilder.Services.AddTransient<Pages.UI.ParallaxBinding_Page>();
 
         return mauiAppBuilder;
     }

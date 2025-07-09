@@ -47,8 +47,11 @@
                         <Button Text="AppTheme"
                                 Clicked="OnNavigateToAppThemeClicked"
                                 HorizontalOptions="Fill" />
-                        <Button Text="Parallax Effect"
-                                Clicked="OnNavigateToParallaxEffectClicked"
+                        <Button Text="Parallax Binding"
+                                Clicked="OnNavigateToParallaxBindingClicked"
+                                HorizontalOptions="Fill" />
+                        <Button Text="Parallax Gyroscope"
+                                Clicked="OnNavigateToParallaxGyroscopeClicked"
                                 HorizontalOptions="Fill" />
                 </VerticalStackLayout>
         </ScrollView>

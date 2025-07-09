@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Maui_Developer_Sample.Pages.UI.Views"
+             x:Class="Maui_Developer_Sample.Pages.UI.ParallaxBinding_Page"
+             Title="Parallax Binding Demo">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Shared parallax offset source -->
+            <views:ParallaxOffsetFromBindingSource x:Key="SharedParallaxSource" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, 1*">
+
+            <!-- Control Panel -->
+            <Border Grid.Row="0"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                    StrokeThickness="1"
+                    Margin="10"
+                    Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Parallax Controls"
+                           FontAttributes="Bold"
+                           FontSize="16"
+                           HorizontalOptions="Center" />
+
+                    <!-- X Axis Control -->
+                    <Grid ColumnDefinitions="Auto, 1*, Auto"
+                          ColumnSpacing="10">
+                        <Label Grid.Column="0"
+                               Text="X:"
+                               VerticalOptions="Center"
+                               MinimumWidthRequest="20" />
+                        <Slider Grid.Column="1"
+                                x:Name="XSlider"
+                                Minimum="-1"
+                                Maximum="1"
+                                x:DataType="{x:Type views:ParallaxOffsetFromBindingSource}"
+                                Value="{Binding Source={StaticResource SharedParallaxSource}, Path=ParallaxXValue, Mode=TwoWay}"
+                                ThumbColor="{StaticResource Primary}" />
+                        <Label Grid.Column="2"
+                               x:DataType="{x:Type views:ParallaxOffsetFromBindingSource}"
+                               Text="{Binding Source={StaticResource SharedParallaxSource}, Path=ParallaxXValue, StringFormat='{0:F2}'}"
+                               VerticalOptions="Center"
+                               MinimumWidthRequest="40" />
+                    </Grid>
+
+                    <!-- Y Axis Control -->
+                    <Grid ColumnDefinitions="Auto, 1*, Auto"
+                          ColumnSpacing="10">
+                        <Label Grid.Column="0"
+                               Text="Y:"
+                               VerticalOptions="Center"
+                               MinimumWidthRequest="20" />
+                        <Slider Grid.Column="1"
+                                x:Name="YSlider"
+                                Minimum="-1"
+                                Maximum="1"
+                                x:DataType="{x:Type views:ParallaxOffsetFromBindingSource}"
+                                Value="{Binding Source={StaticResource SharedParallaxSource}, Path=ParallaxYValue, Mode=TwoWay}"
+                                ThumbColor="{StaticResource Primary}" />
+                        <Label Grid.Column="2"
+                               x:DataType="{x:Type views:ParallaxOffsetFromBindingSource}"
+                               Text="{Binding Source={StaticResource SharedParallaxSource}, Path=ParallaxYValue, StringFormat='{0:F2}'}"
+                               VerticalOptions="Center"
+                               MinimumWidthRequest="40" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Parallax Demo Area -->
+            <Border Grid.Row="3"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray950}}"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
+                    StrokeThickness="2"
+                    Margin="10">
+                <Grid>
+                    
+                    <!-- Background Layer - Opposite movement -->
+                    <views:ParallaxLayer ParallaxOffsetSource="{StaticResource SharedParallaxSource}"
+                                         ParallaxMaxDistanceX="-40"
+                                         ParallaxMaxDistanceY="-40"
+                                         Scale="1.2"
+                                         ZIndex="-1">
+                        <Image Source="hike.jpg"
+                               Aspect="AspectFill"
+                               HorizontalOptions="Fill"
+                               VerticalOptions="Fill" />
+                    </views:ParallaxLayer>
+
+                    <!-- Far Layer - Slowest movement -->
+                    <views:ParallaxLayer ParallaxOffsetSource="{StaticResource SharedParallaxSource}"
+                                         ParallaxMaxDistanceX="20"
+                                         ParallaxMaxDistanceY="20"
+                                         ZIndex="1">
+                        <Ellipse Fill="{StaticResource Tertiary}"
+                                 Opacity="0.3"
+                                 WidthRequest="200"
+                                 HeightRequest="200"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                    </views:ParallaxLayer>
+
+                    <!-- Middle Layer - Medium movement -->
+                    <views:ParallaxLayer ParallaxOffsetSource="{StaticResource SharedParallaxSource}"
+                                         ParallaxMaxDistanceX="40"
+                                         ParallaxMaxDistanceY="40"
+                                         ZIndex="2">
+                        <Border BackgroundColor="{StaticResource Primary}"
+                                Stroke="{StaticResource Secondary}"
+                                StrokeThickness="3"
+                                WidthRequest="120"
+                                HeightRequest="120"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="15" />
+                            </Border.StrokeShape>
+                            <Label Text="Layer 2"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+                    </views:ParallaxLayer>
+
+                    <!-- Foreground Layer - Fastest movement -->
+                    <views:ParallaxLayer ParallaxOffsetSource="{StaticResource SharedParallaxSource}"
+                                         ParallaxMaxDistanceX="80"
+                                         ParallaxMaxDistanceY="80"
+                                         ZIndex="3">
+                        <Border BackgroundColor="{StaticResource Secondary}"
+                                Stroke="{StaticResource Primary}"
+                                StrokeThickness="2"
+                                WidthRequest="80"
+                                HeightRequest="80"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center">
+                            <Border.StrokeShape>
+                                <Ellipse />
+                            </Border.StrokeShape>
+                            <Label Text="Layer 3"
+                                   TextColor="White"
+                                   FontSize="10"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Border>
+                    </views:ParallaxLayer>
+
+                    <!-- Additional decorative elements -->
+                    <views:ParallaxLayer ParallaxOffsetSource="{StaticResource SharedParallaxSource}"
+                                         ParallaxMaxDistanceX="60"
+                                         ParallaxMaxDistanceY="30"
+                                         ZIndex="4">
+                        <StackLayout Orientation="Horizontal"
+                                     Spacing="30"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="End"
+                                     Margin="0,0,0,50">
+                            <BoxView BackgroundColor="{StaticResource Tertiary}"
+                                     WidthRequest="20"
+                                     HeightRequest="40" />
+                            <BoxView BackgroundColor="{StaticResource Tertiary}"
+                                     WidthRequest="20"
+                                     HeightRequest="60" />
+                            <BoxView BackgroundColor="{StaticResource Tertiary}"
+                                     WidthRequest="20"
+                                     HeightRequest="30" />
+                            <BoxView BackgroundColor="{StaticResource Tertiary}"
+                                     WidthRequest="20"
+                                     HeightRequest="50" />
+                        </StackLayout>
+                    </views:ParallaxLayer>
+
+                    <!-- Info overlay that doesn't move -->
+                    <Border
+                        BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                        Stroke="{StaticResource Primary}"
+                        StrokeThickness="1"
+                        Opacity="0.9"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start"
+                        Margin="20"
+                        Padding="10"
+                        ZIndex="10">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Layer Info:"
+                                   FontAttributes="Bold"
+                                   FontSize="10" />
+                            <Label Text="• Background: -40px distance"
+                                   FontSize="9" />
+                            <Label Text="• Circle: 20px max distance"
+                                   FontSize="9" />
+                            <Label Text="• Square: 40px max distance"
+                                   FontSize="9" />
+                            <Label Text="• Small Circle: 80px max distance"
+                                   FontSize="9" />
+                            <Label Text="• Bars: 60px X, 30px Y"
+                                   FontSize="9" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                </Grid>
+            </Border>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
