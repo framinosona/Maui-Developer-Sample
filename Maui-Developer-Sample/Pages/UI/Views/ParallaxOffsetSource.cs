@@ -37,8 +37,9 @@ public abstract class ParallaxOffsetSource : BindableObject
         }
     }
 
-    public double OffsetX { get; private set; }
-    public double OffsetY { get; private set; }
+    // Useful for cumulative calculation
+    public double CurrentOffsetX { get; private set; }
+    public double CurrentOffsetY { get; private set; }
 
     /// <summary>
     /// Notifies all listeners about the new parallax offset.
@@ -56,9 +57,9 @@ public abstract class ParallaxOffsetSource : BindableObject
             }
         }
 
-        OffsetX = x;
-        OffsetY = y;
-        OnPropertyChanged(nameof(OffsetX));
-        OnPropertyChanged(nameof(OffsetY));
+        CurrentOffsetX = x;
+        CurrentOffsetY = y;
+        OnPropertyChanged(nameof(CurrentOffsetX));
+        OnPropertyChanged(nameof(CurrentOffsetY));
     }
 }

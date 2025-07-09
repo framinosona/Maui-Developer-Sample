@@ -29,8 +29,8 @@ public class ParallaxOffsetFromGyroscopeSource : ParallaxOffsetSource, IDisposab
         if (IsCumulative)
         {
             // If cumulative, add the new values to the existing offset
-            x = OffsetX + horizontalMovement * Multiplier;
-            y = OffsetY + verticalMovement * Multiplier;
+            x = CurrentOffsetX + horizontalMovement * Multiplier;
+            y = CurrentOffsetY + verticalMovement * Multiplier;
         }
         else
         {
