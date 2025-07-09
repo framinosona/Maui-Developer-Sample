@@ -4,9 +4,7 @@ using Maui_Developer_Sample.Services;
 namespace Maui_Developer_Sample.Pages.UI.Views;
 
 /// <summary>
-/// This class represents a source of parallax offset.
-/// It gives an X and Y value, moving from -1 to 1.
-/// The offset is used to calculate the position of the parallax layer.
+/// Abstract base class for parallax offset sources that provide X and Y values from -1 to 1.
 /// </summary>
 public abstract class ParallaxOffsetSource : BindableObject
 {
@@ -38,19 +36,18 @@ public abstract class ParallaxOffsetSource : BindableObject
             Listeners.Remove(listener);
         }
     }
-    
+
     public double OffsetX { get; private set; }
     public double OffsetY { get; private set; }
 
     /// <summary>
     /// Notifies all listeners about the new parallax offset.
-    /// The X and Y values will be clamped between -1 and 1.
     /// </summary>
     protected void NotifyListeners(double x, double y)
     {
         x = Math.Clamp(x, -1, 1);
         y = Math.Clamp(y, -1, 1);
-        
+
         lock (Listeners)
         {
             foreach (var listener in Listeners)
@@ -58,7 +55,7 @@ public abstract class ParallaxOffsetSource : BindableObject
                 listener.OnParallaxOffsetChanged(x, y);
             }
         }
-        
+
         OffsetX = x;
         OffsetY = y;
         OnPropertyChanged(nameof(OffsetX));

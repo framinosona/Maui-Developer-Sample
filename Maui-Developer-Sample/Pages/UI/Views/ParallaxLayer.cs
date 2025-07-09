@@ -9,7 +9,6 @@ public interface IParallaxOffsetListener
 {
     /// <summary>
     /// Called when the parallax offset values change.
-    /// The X and Y values will be between -1 and 1, representing the parallax effect.
     /// </summary>
     /// <param name="x">The horizontal offset value between -1 and 1.</param>
     /// <param name="y">The vertical offset value between -1 and 1.</param>
@@ -18,7 +17,6 @@ public interface IParallaxOffsetListener
 
 /// <summary>
 /// A content view that applies parallax translation effects to its child content.
-/// The parallax effect is controlled by a ParallaxOffsetSource and maximum distance properties.
 /// </summary>
 public class ParallaxLayer : ContentView, IParallaxOffsetListener
 {
@@ -34,18 +32,15 @@ public class ParallaxLayer : ContentView, IParallaxOffsetListener
     /// <summary>
     /// Gets or sets the current horizontal parallax offset value.
     /// </summary>
-    /// <value>A value between -1 and 1 representing the current horizontal offset.</value>
     public double ParallaxX { get; set; } = 0.0;
 
     /// <summary>
     /// Gets or sets the current vertical parallax offset value.
     /// </summary>
-    /// <value>A value between -1 and 1 representing the current vertical offset.</value>
     public double ParallaxY { get; set; } = 0.0;
 
     /// <summary>
     /// Called when the parallax offset source provides new offset values.
-    /// Updates the internal offset values and applies the translation to the content.
     /// </summary>
     /// <param name="x">The horizontal offset value between -1 and 1.</param>
     /// <param name="y">The vertical offset value between -1 and 1.</param>
@@ -58,7 +53,6 @@ public class ParallaxLayer : ContentView, IParallaxOffsetListener
 
     /// <summary>
     /// Updates the translation transform based on current parallax values and maximum distances.
-    /// This method is called automatically when offset values or distance properties change.
     /// </summary>
     public void UpdateTranslation()
     {
@@ -70,7 +64,6 @@ public class ParallaxLayer : ContentView, IParallaxOffsetListener
     /// <summary>
     /// Gets or sets the parallax offset source that provides the parallax data.
     /// </summary>
-    /// <value>The ParallaxOffsetSource that will drive this layer's movement.</value>
     public ParallaxOffsetSource? ParallaxOffsetSource
     {
         get => (ParallaxOffsetSource?)GetValue(ParallaxOffsetSourceProperty);
@@ -87,10 +80,6 @@ public class ParallaxLayer : ContentView, IParallaxOffsetListener
     /// <summary>
     /// Gets or sets the maximum horizontal distance for parallax movement in pixels.
     /// </summary>
-    /// <value>
-    /// The maximum number of pixels the content can move horizontally.
-    /// Higher values create more dramatic parallax effects.
-    /// </value>
     public double ParallaxMaxDistanceX
     {
         get => (double)GetValue(ParallaxMaxDistanceXProperty);
@@ -107,10 +96,6 @@ public class ParallaxLayer : ContentView, IParallaxOffsetListener
     /// <summary>
     /// Gets or sets the maximum vertical distance for parallax movement in pixels.
     /// </summary>
-    /// <value>
-    /// The maximum number of pixels the content can move vertically.
-    /// Higher values create more dramatic parallax effects.
-    /// </value>
     public double ParallaxMaxDistanceY
     {
         get => (double)GetValue(ParallaxMaxDistanceYProperty);
@@ -126,7 +111,6 @@ public class ParallaxLayer : ContentView, IParallaxOffsetListener
 
     /// <summary>
     /// Handles changes to the parallax distance properties.
-    /// Updates the translation when distance values change.
     /// </summary>
     private static void OnParallaxDistanceChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -138,7 +122,6 @@ public class ParallaxLayer : ContentView, IParallaxOffsetListener
 
     /// <summary>
     /// Handles changes to the ParallaxOffsetSource property.
-    /// Manages listener registration with the old and new sources.
     /// </summary>
     private static void OnParallaxOffsetSourceChanged(BindableObject bindable, object oldValue, object newValue)
     {

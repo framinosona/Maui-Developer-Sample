@@ -2,7 +2,6 @@ namespace Maui_Developer_Sample.Pages.UI.Views;
 
 /// <summary>
 /// Parallax offset source that uses bindable properties for X and Y values.
-/// Allows direct control of parallax offset through data binding or manual property setting.
 /// </summary>
 public class ParallaxOffsetFromBindingSource : ParallaxOffsetSource
 {
@@ -16,10 +15,6 @@ public class ParallaxOffsetFromBindingSource : ParallaxOffsetSource
     /// <summary>
     /// Gets or sets the X offset value for parallax effect.
     /// </summary>
-    /// <value>
-    /// A value between -1.0 and 1.0 representing the horizontal parallax offset.
-    /// Values outside this range will be clamped when applied.
-    /// </value>
     public double ParallaxXValue
     {
         get => (double)GetValue(ParallaxXValueProperty);
@@ -35,10 +30,6 @@ public class ParallaxOffsetFromBindingSource : ParallaxOffsetSource
     /// <summary>
     /// Gets or sets the Y offset value for parallax effect.
     /// </summary>
-    /// <value>
-    /// A value between -1.0 and 1.0 representing the vertical parallax offset.
-    /// Values outside this range will be clamped when applied.
-    /// </value>
     public double ParallaxYValue
     {
         get => (double)GetValue(ParallaxYValueProperty);
@@ -75,7 +66,6 @@ public class ParallaxOffsetFromBindingSource : ParallaxOffsetSource
 
     /// <summary>
     /// Notifies all listeners when either X or Y values change.
-    /// Values are automatically clamped to the valid range [-1, 1].
     /// </summary>
     protected void OnParallaxValueChanged()
     {

@@ -2,6 +2,9 @@ using Maui_Developer_Sample.Services;
 
 namespace Maui_Developer_Sample.Pages.UI.Views;
 
+/// <summary>
+/// Parallax offset source that uses gyroscope sensor data to create movement effects.
+/// </summary>
 public class ParallaxOffsetFromGyroscopeSource : ParallaxOffsetSource, IDisposable
 {
     private readonly GyroscopeSensorService _gyroscopeSensorService;
@@ -20,39 +23,50 @@ public class ParallaxOffsetFromGyroscopeSource : ParallaxOffsetSource, IDisposab
     private void OnGyroscopeDataChanged(GyroscopeData update)
     {
         double x = 0, y = 0;
-        float horizontalMovement = update.AngularVelocity.Y; // Pitch - As if the screwdriver was on top of the phone
-        float verticalMovement = update.AngularVelocity.X; // Roll - As if the screwdriver was on the side of the phone
-        
-        if(IsCumulative)
+        float horizontalMovement = update.AngularVelocity.Y; // Pitch
+        float verticalMovement = update.AngularVelocity.X; // Roll
+
+        if (IsCumulative)
         {
             // If cumulative, add the new values to the existing offset
-            x = OffsetX + horizontalMovement * Multiplier; // Normalize
-            y = OffsetY + verticalMovement * Multiplier; // Normalize
+            x = OffsetX + horizontalMovement * Multiplier;
+            y = OffsetY + verticalMovement * Multiplier;
         }
-        else 
+        else
         {
             // If not cumulative, just use the new values directly
-            x = horizontalMovement * Multiplier; // Normalize
-            y = verticalMovement * Multiplier; // Normalize
+            x = horizontalMovement * Multiplier;
+            y = verticalMovement * Multiplier;
         }
-        
-        // Clamp the values between -1 and 1 inside :
+
         NotifyListeners(x, y);
     }
-    
+
+    /// <summary>
+    /// Gets or sets whether the gyroscope values are cumulative or direct.
+    /// </summary>
     public bool IsCumulative
     {
-        get => (bool) GetValue(IsCumulativeProperty);
+        get => (bool)GetValue(IsCumulativeProperty);
         set => SetValue(IsCumulativeProperty, value);
     }
-    
+
+    /// <summary>
+    /// Bindable property for IsCumulative.
+    /// </summary>
     public readonly static BindableProperty IsCumulativeProperty = BindableProperty.Create(nameof(IsCumulative), typeof(bool), typeof(ParallaxOffsetFromGyroscopeSource), false);
 
+    /// <summary>
+    /// Gets or sets the multiplier for gyroscope values.
+    /// </summary>
     public double Multiplier
     {
-        get => (double) GetValue(ParallaxGyroscopeMultiplierProperty);
+        get => (double)GetValue(ParallaxGyroscopeMultiplierProperty);
         set => SetValue(ParallaxGyroscopeMultiplierProperty, value);
     }
 
+    /// <summary>
+    /// Bindable property for Multiplier.
+    /// </summary>
     public readonly static BindableProperty ParallaxGyroscopeMultiplierProperty = BindableProperty.Create(nameof(Multiplier), typeof(double), typeof(ParallaxOffsetFromGyroscopeSource), 0.2d);
 }
